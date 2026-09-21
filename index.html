@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Ali Ashfaq | Portfolio</title>
     <!-- Google Fonts & Font Awesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -38,107 +38,129 @@
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Navbar */
         .navbar {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            padding: 25px 8%;
-            background: rgba(13, 10, 26, 0.9);
+            padding: 15px 5%;
+            background: rgba(13, 10, 26, 0.95);
             backdrop-filter: blur(10px);
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.15);
         }
 
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-light);
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: var(--accent-purple);
+        .bismillah-text {
+            font-family: 'Amiri', serif;
+            font-size: 22px;
+            color: var(--accent-blue);
+            text-align: center;
+            grid-column: 2;
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+            letter-spacing: 1px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 20px;
+            grid-column: 3;
+            justify-self: end;
         }
 
         .nav-links a {
             color: var(--text-dim);
             text-decoration: none;
-            font-size: 15px;
+            font-size: 14px;
+            font-weight: 500;
             transition: 0.3s;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 8px;
         }
 
         .nav-links a:hover, .nav-links a.active {
             color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.1);
         }
 
         .menu-btn {
             display: none;
             font-size: 22px;
             cursor: pointer;
+            color: var(--text-light);
+            grid-column: 3;
+            justify-self: end;
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 120px 8% 60px;
-            gap: 40px;
+        /* Main Page Container & Section Routing */
+        main {
+            margin-top: 85px;
+            flex: 1;
         }
 
-        .hero-content {
-            max-width: 550px;
+        .page-section {
+            display: none;
+            padding: 40px 8% 80px;
+            animation: fadeIn 0.4s ease-in-out;
         }
 
-        .greeting {
-            font-size: 18px;
-            color: var(--text-dim);
-            margin-bottom: 5px;
+        .page-section.active-section {
+            display: block;
         }
 
-        .hero-content h1 {
-            font-size: 52px;
-            line-height: 1.1;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Headings */
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
             font-weight: 700;
-            margin-bottom: 15px;
+            color: var(--text-light);
+            position: relative;
+            display: inline-block;
         }
 
-        .role {
-            font-size: 20px;
-            color: var(--accent-blue);
-            margin-bottom: 15px;
-            font-weight: 500;
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+            border-radius: 2px;
         }
 
-        .description {
+        .section-title p {
             color: var(--text-dim);
-            font-size: 15px;
-            margin-bottom: 30px;
+            font-size: 14px;
+            margin-top: 15px;
         }
 
-        .hero-btns {
-            display: flex;
-            gap: 15px;
-        }
-
+        /* Buttons */
         .btn {
-            padding: 12px 30px;
+            padding: 12px 28px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: 500;
-            font-size: 15px;
+            font-size: 14px;
             transition: 0.3s ease;
             cursor: pointer;
             display: inline-flex;
@@ -169,19 +191,150 @@
             transform: translateY(-2px);
         }
 
-        /* Right Side Contact & Profile Box */
+        /* HERO / HOME SECTION */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--whatsapp-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--whatsapp-green);
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            line-height: 1.15;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 40%, var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .role {
+            font-size: 18px;
+            color: var(--accent-purple);
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+
+        .description {
+            color: var(--text-dim);
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+            background: rgba(21, 16, 42, 0.6);
+            border: 1px solid var(--card-border);
+            padding: 15px;
+            border-radius: 16px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item h4 {
+            font-size: 18px;
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+
+        /* 24/7 Support Banner Styling */
+        .support-banner-247 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(56, 189, 248, 0.1));
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            padding: 12px 20px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.15);
+        }
+
+        .support-banner-247 i {
+            font-size: 26px;
+            color: var(--whatsapp-green);
+        }
+
+        .support-banner-text h5 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .support-banner-text h5 .badge-247 {
+            background: var(--whatsapp-green);
+            color: #000;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .support-banner-text p {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin: 0;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Profile Card Side */
         .profile-card-side {
             display: flex;
             flex-direction: column;
             gap: 20px;
             align-items: center;
             width: 100%;
-            max-width: 320px;
+            max-width: 330px;
         }
 
         .img-container {
             width: 100%;
-            height: 380px;
+            height: 360px;
             background: var(--bg-card);
             border: 2px solid var(--card-border);
             border-radius: 20px;
@@ -217,7 +370,6 @@
             backdrop-filter: blur(4px);
         }
 
-        /* Contact Details Widget */
         .contact-widget {
             width: 100%;
             background: var(--bg-card);
@@ -242,10 +394,9 @@
             text-decoration: none;
             transition: all 0.3s ease;
             cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
         }
 
-        .contact-item:hover, .contact-item:active {
+        .contact-item:hover {
             border-color: var(--accent-blue);
             background: rgba(56, 189, 248, 0.1);
             transform: translateX(3px);
@@ -270,13 +421,529 @@
         }
 
         .contact-text span {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             color: var(--text-light);
             word-break: break-all;
         }
 
-        /* Modal / Action Popup */
+        /* HOME SERVICES PREVIEW SECTION */
+        .home-extra-section {
+            margin-top: 50px;
+        }
+
+        .home-section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
+        }
+
+        .home-section-heading h3 {
+            font-size: 22px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .home-section-heading h3 i {
+            color: var(--accent-blue);
+        }
+
+        .home-section-heading a {
+            color: var(--accent-purple);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .home-section-heading a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* ABOUT SECTION */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-box {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--glow-shadow);
+        }
+
+        .about-box h3 {
+            font-size: 22px;
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+        }
+
+        .about-box p {
+            color: var(--text-dim);
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .skill-card i {
+            font-size: 24px;
+            color: var(--accent-purple);
+        }
+
+        .skill-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* SERVICES SECTION */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            padding: 30px;
+            border-radius: 18px;
+            transition: 0.3s ease;
+            box-shadow: var(--glow-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-blue);
+        }
+
+        .service-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary-glow), var(--accent-purple));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        .service-card p {
+            color: var(--text-dim);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* PORTFOLIO SECTION */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-card {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--glow-shadow);
+            transition: 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 180px;
+            background: #1f183d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-purple);
+            font-size: 40px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .portfolio-info {
+            padding: 20px;
+        }
+
+        .portfolio-info h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .portfolio-info p {
+            color: var(--text-dim);
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        /* CONTACT SECTION */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+        }
+
+        .contact-info-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-card-box {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            padding: 20px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: 0.3s;
+        }
+
+        .contact-card-box:hover {
+            border-color: var(--accent-blue);
+            transform: translateX(4px);
+        }
+
+        .contact-card-box i {
+            font-size: 26px;
+            color: var(--accent-blue);
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--glow-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--bg-input);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent-purple);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        /* AI CHATBOT FLOATING WIDGET STYLES & GREETING BUBBLE */
+        .ai-chat-wrapper {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .ai-greeting-bubble {
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-input));
+            border: 1px solid var(--card-border);
+            color: var(--text-light);
+            padding: 10px 16px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            margin-bottom: 12px;
+            animation: bounceBubble 2s infinite ease-in-out;
+            max-width: 240px;
+            text-align: right;
+            position: relative;
+        }
+
+        .ai-greeting-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            right: 22px;
+            width: 12px;
+            height: 12px;
+            background: var(--bg-input);
+            border-right: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounceBubble {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .ai-chat-btn {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-glow), var(--accent-purple));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.6);
+            transition: 0.3s ease;
+            animation: pulseGlow 2s infinite;
+        }
+
+        .ai-chat-btn:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(168, 85, 247, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
+        }
+
+        .ai-chat-container {
+            position: fixed;
+            bottom: 95px;
+            right: 25px;
+            width: 350px;
+            max-width: calc(100vw - 40px);
+            height: 480px;
+            background: var(--bg-card);
+            border: 2px solid var(--card-border);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            z-index: 1500;
+            overflow: hidden;
+            transform: scale(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .ai-chat-container.active {
+            transform: scale(1);
+        }
+
+        .ai-chat-header {
+            background: linear-gradient(135deg, #1f183d, var(--bg-card));
+            padding: 15px;
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ai-chat-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-avatar {
+            width: 35px;
+            height: 35px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #0d0a1a;
+            font-weight: bold;
+        }
+
+        .ai-chat-title h4 {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .ai-chat-title span {
+            font-size: 10px;
+            color: var(--whatsapp-green);
+            display: block;
+        }
+
+        .ai-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .ai-chat-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: rgba(13, 10, 26, 0.4);
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .chat-message.bot {
+            background: var(--bg-input);
+            color: var(--text-light);
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .chat-message.user {
+            background: var(--primary-glow);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .ai-quick-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .quick-chip {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--accent-blue);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .quick-chip:hover {
+            background: var(--accent-blue);
+            color: #0d0a1a;
+        }
+
+        .ai-chat-footer {
+            padding: 10px 15px;
+            background: var(--bg-card);
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            gap: 8px;
+        }
+
+        .ai-chat-footer input {
+            flex: 1;
+            background: var(--bg-input);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 12px;
+            border-radius: 20px;
+            color: white;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .ai-chat-footer button {
+            background: var(--accent-purple);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Clickable Links inside AI Chat */
+        .ai-phone-link, .ai-gmail-link {
+            color: var(--accent-blue);
+            font-weight: 600;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .ai-phone-link:hover, .ai-gmail-link:hover {
+            color: var(--accent-purple);
+        }
+
+        /* MODALS */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -306,12 +973,6 @@
             box-shadow: var(--glow-shadow);
             text-align: center;
             position: relative;
-            animation: popup 0.3s ease;
-        }
-
-        @keyframes popup {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
         }
 
         .modal-box h3 {
@@ -346,16 +1007,9 @@
         }
 
         .call-btn { background: #3b82f6; }
-        .call-btn:hover { background: #2563eb; }
-
         .wa-call-btn { background: #16a34a; }
-        .wa-call-btn:hover { background: #15803d; }
-
         .msg-btn { background: #8b5cf6; }
-        .msg-btn:hover { background: #7c3aed; }
-
         .wa-msg-btn { background: var(--whatsapp-green); }
-        .wa-msg-btn:hover { background: #1eb956; }
 
         .close-modal {
             position: absolute;
@@ -366,34 +1020,43 @@
             cursor: pointer;
         }
 
-        .close-modal:hover { color: var(--text-light); }
-
-        /* Image View Lightbox Modal */
-        .image-modal .modal-box-img {
-            max-width: 90vw;
-            max-height: 85vh;
-            background: transparent;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
         .image-modal img {
-            max-width: 100%;
+            max-width: 90vw;
             max-height: 80vh;
             border-radius: 15px;
             border: 2px solid var(--accent-purple);
             box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
-            object-fit: contain;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(13, 10, 26, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 13px;
+            color: var(--text-dim);
         }
 
         /* Mobile Responsive */
         @media (max-width: 900px) {
-            .hero {
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .bismillah-text {
+                font-size: 16px;
+            }
+
+            .hero, .about-container, .contact-container {
                 flex-direction: column-reverse;
+                grid-template-columns: 1fr;
                 text-align: center;
-                padding-top: 100px;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .hero-btns {
@@ -414,6 +1077,7 @@
                 flex-direction: column;
                 padding: 20px;
                 gap: 15px;
+                border-bottom: 1px solid var(--card-border);
             }
 
             .nav-links.active {
@@ -424,8 +1088,12 @@
                 max-width: 100%;
             }
 
-            .img-container {
-                height: 340px;
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .support-banner-247 {
+                text-align: left;
             }
         }
     </style>
@@ -435,13 +1103,15 @@
     <!-- Header / Navbar -->
     <header>
         <nav class="navbar">
-            <a href="#home" class="logo">Ali<span>.</span></a>
+            <div class="bismillah-text">
+                بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+            </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a class="nav-link active" onclick="switchTab('home')">Home</a></li>
+                <li><a class="nav-link" onclick="switchTab('about')">About</a></li>
+                <li><a class="nav-link" onclick="switchTab('services')">Services</a></li>
+                <li><a class="nav-link" onclick="switchTab('portfolio')">Portfolio</a></li>
+                <li><a class="nav-link" onclick="switchTab('contact')">Contact</a></li>
             </ul>
             <div class="menu-btn" id="menuBtn">
                 <i class="fa-solid fa-bars"></i>
@@ -449,59 +1119,350 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <p class="greeting">Hello, I'm</p>
-            <h1>Muhammad<br>Ali Ashfaq</h1>
-            <h2 class="role">Frontend Developer & UI/UX Designer</h2>
-            <p class="description">
-                I design and build high-performance, modern, and aesthetically pleasing web interfaces that deliver results. Explore my skills, services, and contact me directly below.
-            </p>
-            <div class="hero-btns">
-                <a href="#contact" class="btn primary-btn"><i class="fa-solid fa-envelope"></i> Contact Me</a>
-                <a href="#about" class="btn secondary-btn"><i class="fa-solid fa-file-lines"></i> My Resume</a>
-            </div>
-        </div>
-
-        <!-- Right Side Image + Contact Details -->
-        <div class="profile-card-side">
-            <!-- Naya Image URL yahan lagaya gaya hai -->
-            <div class="img-container" onclick="openImageModal()">
-                <img src="https://i.ibb.co/RGbT5GNL/profile-jpg.jpg" alt="Muhammad Ali Ashfaq Profile" id="profileImg">
-                <div class="img-hint"><i class="fa-solid fa-expand"></i> Click to Expand</div>
-            </div>
-
-            <div class="contact-widget">
-                <!-- Gmail Direct Link -->
-                <a href="mailto:muhammadali99704@gmail.com" class="contact-item">
-                    <i class="fa-solid fa-envelope"></i>
-                    <div class="contact-text">
-                        <label>Click to open Gmail Inbox</label>
-                        <span>muhammadali99704@gmail.com</span>
+    <main>
+        <!-- 1. HOME SECTION -->
+        <section id="home" class="page-section active-section">
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="status-badge">
+                        <span class="status-dot"></span> 24/7 Available for Projects & Forex Signals
                     </div>
-                </a>
+                    <h1>Muhammad Ali Ashfaq</h1>
+                    <h2 class="role">BSCS Graduate, Shopify Expert, Web Developer, Video Editor & Forex Trader</h2>
+                    <p class="description">
+                        Holding a BS Computer Science (BSCS) degree, I empower businesses with high-converting Shopify stores, modern web design, high-quality video editing, and Meta Ads strategies, while helping traders achieve financial success through precise Forex market analysis and daily trading signals.
+                    </p>
 
-                <!-- Phone 1 Action Popup Button -->
-                <div class="contact-item" onclick="openPhoneModal('0308 7569856', '+923087569856')">
-                    <i class="fa-solid fa-phone"></i>
-                    <div class="contact-text">
-                        <label>Click for Call / WhatsApp Options</label>
-                        <span>0308 7569856</span>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h4>BSCS</h4>
+                            <p>Degree Holder</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>3+ Years</h4>
+                            <p>Experience</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>50+ Stores</h4>
+                            <p>Built & Managed</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>85%+</h4>
+                            <p>Signals Accuracy</p>
+                        </div>
+                    </div>
+
+                    <div class="support-banner-247">
+                        <i class="fa-solid fa-headset"></i>
+                        <div class="support-banner-text">
+                            <h5>24/7 Instant Client Support <span class="badge-247">ACTIVE 24/7</span></h5>
+                            <p>Quick response guaranteed anytime for store maintenance, urgent edits & Forex query support.</p>
+                        </div>
+                    </div>
+
+                    <div class="hero-btns">
+                        <a onclick="switchTab('contact')" class="btn primary-btn"><i class="fa-solid fa-paper-plane"></i> Hire Me / Contact</a>
+                        <a onclick="switchTab('services')" class="btn secondary-btn"><i class="fa-solid fa-layer-group"></i> Explore Services</a>
+                    </div>
+                </div>
+
+                <!-- Profile Card Side -->
+                <div class="profile-card-side">
+                    <div class="img-container" onclick="openImageModal()">
+                        <img src="https://i.ibb.co/RGbT5GNL/profile-jpg.jpg" alt="Muhammad Ali Ashfaq Profile" id="profileImg">
+                        <div class="img-hint"><i class="fa-solid fa-expand"></i> Click to Expand</div>
+                    </div>
+
+                    <div class="contact-widget">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=muhammadali99704@gmail.com" target="_blank" class="contact-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div class="contact-text">
+                                <label>Direct Inbox Email</label>
+                                <span>muhammadali99704@gmail.com</span>
+                            </div>
+                        </a>
+
+                        <div class="contact-item" onclick="openPhoneModal('0319 4827997', '+923194827997')">
+                            <i class="fa-solid fa-phone"></i>
+                            <div class="contact-text">
+                                <label>Call / WhatsApp Primary (24/7)</label>
+                                <span>0319 4827997</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-item" onclick="openPhoneModal('0308 7569856', '+923087569856')">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                            <div class="contact-text">
+                                <label>Call / WhatsApp Secondary</label>
+                                <span>0308 7569856</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HOME PAGE SERVICES PREVIEW -->
+            <div class="home-extra-section">
+                <div class="home-section-heading">
+                    <h3><i class="fa-solid fa-briefcase"></i> Key Specializations</h3>
+                    <a onclick="switchTab('services')">View All Services <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-brands fa-shopify"></i></div>
+                        <h3>Shopify Development</h3>
+                        <p>High-converting e-commerce stores engineered for sales, speed, and seamless customer checkout experience.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-video"></i></div>
+                        <h3>Video Editing</h3>
+                        <p>Engaging social media Reels, TikToks, Shorts, and high-converting video ad creatives for brands.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <h3>Forex Signals & Analysis</h3>
+                        <p>Daily accurate technical analysis, market trend forecasts, and precise entry/exit trading signals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT SECTION -->
+        <section id="about" class="page-section">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p>Learn more about my background, passion, and technical expertise.</p>
+            </div>
+            <div class="about-container">
+                <div class="about-box">
+                    <h3>Professional Overview</h3>
+                    <p>I am a BSCS (Bachelor of Science in Computer Science) degree holder and a versatile digital professional with extensive expertise in full-stack web development, e-commerce creation, video editing, performance marketing, and financial markets. My mission is to empower businesses with high-converting digital assets and smart strategies.</p>
+                    <p>From building high-converting Shopify stores, creating engaging video content, and running Meta Ads to providing accurate Forex trading signals, I combine solid computer science fundamentals with practical digital expertise to deliver measurable success.</p>
+                    <a onclick="switchTab('contact')" class="btn primary-btn"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <div>
+                            <h4>BSCS Degree</h4>
+                            <span style="font-size:11px; color:var(--text-dim);">Computer Science</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fa-brands fa-shopify"></i>
+                        <div>
+                            <h4>Shopify Development</h4>
+                            <span style="font-size:11px; color:var(--text-dim);">Store Setup & Customization</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fa-solid fa-film"></i>
+                        <div>
+                            <h4>Video Editing</h4>
+                            <span style="font-size:11px; color:var(--text-dim);">Reels, Shorts & Ad Creatives</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fa-solid fa-code"></i>
+                        <div>
+                            <h4>Web Creation & Editing</h4>
+                            <span style="font-size:11px; color:var(--text-dim);">HTML/CSS/JS & CMS</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <div>
+                            <h4>Forex Trading & Signals</h4>
+                            <span style="font-size:11px; color:var(--text-dim);">Market Analysis & Signals</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fa-solid fa-clock"></i>
+                        <div>
+                            <h4>24/7 Availability</h4>
+                            <span style="font-size:11px; color:var(--text-dim);">Round-the-clock Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SERVICES SECTION -->
+        <section id="services" class="page-section">
+            <div class="section-title">
+                <h2>My Services</h2>
+                <p>High-quality digital solutions tailored to elevate your business.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-brands fa-shopify"></i></div>
+                    <h3>Shopify Store Creation</h3>
+                    <p>Building fully responsive, high-converting, and automated Shopify e-commerce stores from scratch.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-photo-film"></i></div>
+                    <h3>Video Editing & Motion</h3>
+                    <p>Professional video editing for TikTok, Instagram Reels, YouTube Shorts, and high-impact e-commerce video ads.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-store"></i></div>
+                    <h3>Store Management & 24/7 Support</h3>
+                    <p>End-to-end e-commerce store maintenance, inventory updating, design optimization, and 24/7 active technical assistance.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                    <h3>Website Creation & Editing</h3>
+                    <p>Custom website development and front-end code edits for flawless speed, design, and user experience.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3>Forex Trading & Signals</h3>
+                    <p>Providing accurate Forex market signals, technical analysis, and risk management strategies.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-rectangle-ad"></i></div>
+                    <h3>Meta Ads Campaign</h3>
+                    <p>Targeted Facebook and Instagram ad setup, audience research, creative strategy, and ROI tracking.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PORTFOLIO SECTION -->
+        <section id="portfolio" class="page-section">
+            <div class="section-title">
+                <h2>Featured Projects</h2>
+                <p>A showcase of recent stores, websites, and creative work.</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-img"><i class="fa-brands fa-shopify"></i></div>
+                    <div class="portfolio-info">
+                        <h3>E-Commerce Fashion Store</h3>
+                        <p>Complete Shopify store design with integrated payment gateway and automated order setup.</p>
+                        <span class="tag">Shopify</span>
                     </div>
                 </div>
 
-                <!-- Phone 2 Action Popup Button -->
-                <div class="contact-item" onclick="openPhoneModal('0319 4827997', '+923194827997')">
-                    <i class="fa-solid fa-mobile-screen"></i>
-                    <div class="contact-text">
-                        <label>Click for Call / WhatsApp Options</label>
-                        <span>0319 4827997</span>
+                <div class="portfolio-card">
+                    <div class="portfolio-img"><i class="fa-solid fa-play"></i></div>
+                    <div class="portfolio-info">
+                        <h3>High-Converting Video Ads</h3>
+                        <p>Engaging promotional video edits tailored for Meta Ads and social media marketing campaigns.</p>
+                        <span class="tag">Video Editing</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-img"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="portfolio-info">
+                        <h3>Forex Signals Community</h3>
+                        <p>Trading portal providing daily technical analysis breakdown and market signal alerts.</p>
+                        <span class="tag">Forex Signals</span>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- 5. CONTACT SECTION -->
+        <section id="contact" class="page-section">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+                <p>Feel free to reach out for projects, signals, or collaborations (24/7 Available).</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info-cards">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=muhammadali99704@gmail.com" target="_blank" class="contact-card-box">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <h4 style="font-size: 14px;">Open Direct Gmail Inbox</h4>
+                            <p style="font-size: 13px; color: var(--text-dim);">muhammadali99704@gmail.com</p>
+                        </div>
+                    </a>
+
+                    <div class="contact-card-box" onclick="openPhoneModal('0319 4827997', '+923194827997')" style="cursor: pointer;">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <h4 style="font-size: 14px;">Primary Phone / WhatsApp (24/7)</h4>
+                            <p style="font-size: 13px; color: var(--text-dim);">0319 4827997 (Click for options)</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card-box" onclick="openPhoneModal('0308 7569856', '+923087569856')" style="cursor: pointer;">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        <div>
+                            <h4 style="font-size: 14px;">Secondary Phone / WhatsApp</h4>
+                            <p style="font-size: 13px; color: var(--text-dim);">0308 7569856 (Click for options)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Email</label>
+                        <input type="email" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea placeholder="Write your message or inquiry here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary-btn" style="width: 100%; justify-content: center;"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- AI Assistant Floating Widget with Greeting Bubble -->
+    <div class="ai-chat-wrapper">
+        <div class="ai-greeting-bubble">
+            ✨ Hi there! I am your AI assistant. How may I assist you?
         </div>
-    </section>
+        <div class="ai-chat-btn" onclick="toggleAIChat()" title="Chat with AI Assistant">
+            <i class="fa-solid fa-robot"></i>
+        </div>
+    </div>
+
+    <div class="ai-chat-container" id="aiChatContainer">
+        <div class="ai-chat-header">
+            <div class="ai-chat-title">
+                <div class="ai-avatar">AI</div>
+                <div>
+                    <h4>Ali's Assistant</h4>
+                    <span>● Online 24/7</span>
+                </div>
+            </div>
+            <button class="ai-close-btn" onclick="toggleAIChat()">&times;</button>
+        </div>
+
+        <div class="ai-chat-body" id="aiChatBody">
+            <div class="chat-message bot">
+                Hello! 👋 Main Muhammad Ali Ashfaq ka AI Assistant hoon. Aapko hamari kin services ke mutabiq information chahiye?
+                <div class="ai-quick-options">
+                    <span class="quick-chip" onclick="sendQuickQuery('Shopify Store')">🛍️ Shopify Store</span>
+                    <span class="quick-chip" onclick="sendQuickQuery('Video Editing')">🎬 Video Editing</span>
+                    <span class="quick-chip" onclick="sendQuickQuery('Forex Signals')">📈 Forex Signals</span>
+                    <span class="quick-chip" onclick="sendQuickQuery('Contact Number')">📞 Contact & Support</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="ai-chat-footer">
+            <input type="text" id="aiUserInput" placeholder="Yahan apna sawal likhein..." onkeypress="handleAIKeypress(event)">
+            <button onclick="sendUserMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
 
     <!-- Phone Option Popup Modal -->
     <div class="modal-overlay" id="phoneModal">
@@ -529,15 +1490,39 @@
 
     <!-- Expanded Image Lightbox Modal -->
     <div class="modal-overlay image-modal" id="imageModal" onclick="closeImageModal()">
-        <div class="modal-box-img">
-            <span class="close-modal" onclick="closeImageModal()" style="color: white; right: -10px; top: -35px;">&times;</span>
+        <div style="position: relative;">
+            <span class="close-modal" onclick="closeImageModal()" style="color: white; right: 10px; top: 10px;">&times;</span>
             <img src="https://i.ibb.co/RGbT5GNL/profile-jpg.jpg" alt="Enlarged Profile Image">
         </div>
     </div>
 
-    <!-- JavaScript logic -->
+    <footer>
+        <p>&copy; 2026 Muhammad Ali Ashfaq. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript Navigation & AI Chat Logic -->
     <script>
-        // Navigation toggle for mobile
+        function switchTab(sectionId) {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('active-section'));
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active-section');
+            }
+
+            const navLinksList = document.querySelectorAll('.nav-link');
+            navLinksList.forEach(link => link.classList.remove('active'));
+            
+            const activeNav = Array.from(navLinksList).find(link => link.getAttribute('onclick').includes(sectionId));
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            document.getElementById('navLinks').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         const menuBtn = document.getElementById('menuBtn');
         const navLinks = document.getElementById('navLinks');
 
@@ -545,22 +1530,76 @@
             navLinks.classList.toggle('active');
         });
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
+        // AI Chatbot Logic
+        function toggleAIChat() {
+            const chatContainer = document.getElementById('aiChatContainer');
+            chatContainer.classList.toggle('active');
+        }
 
-        // Phone Action Modal Function
+        function sendQuickQuery(topic) {
+            appendMessage(topic, 'user');
+            setTimeout(() => {
+                let reply = "";
+                if(topic.includes('Shopify')) {
+                    reply = "Muhammad Ali Ashfaq ek expert Shopify Developer hain jo high-converting aur responsive stores banate hain. Mazeed details ke liye aap unhein WhatsApp (<span class='ai-phone-link' onclick=\"openPhoneModal('0319 4827997', '+923194827997')\">0319 4827997</span>) par rabta kar sakte hain ya apna email <a href='https://mail.google.com/mail/?view=cm&fs=1&to=muhammadali99704@gmail.com' target='_blank' class='ai-gmail-link'>Gmail Inbox</a> ke zariye bhej sakte hain.";
+                } else if(topic.includes('Video')) {
+                    reply = "Video editing services mein Reels, TikToks, YouTube Shorts aur high-impact ad creatives shamil hain. Aap contact section se ya <span class='ai-phone-link' onclick=\"openPhoneModal('0319 4827997', '+923194827997')\">0319 4827997</span> par click karke direct baat kar sakte hain!";
+                } else if(topic.includes('Forex')) {
+                    reply = "Ali daily accurate technical analysis aur 85%+ accuracy ke sath Forex trading signals provide karte hain.";
+                } else if(topic.includes('Contact')) {
+                    reply = "Aap Ali se direct <span class='ai-phone-link' onclick=\"openPhoneModal('0319 4827997', '+923194827997')\">0319 4827997</span> par call ya WhatsApp ke zariye 24/7 rabta kar sakte hain, ya direct <a href='https://mail.google.com/mail/?view=cm&fs=1&to=muhammadali99704@gmail.com' target='_blank' class='ai-gmail-link'>Gmail Inbox</a> khol kar email bhej sakte hain.";
+                }
+                appendMessage(reply, 'bot');
+            }, 500);
+        }
+
+        function sendUserMessage() {
+            const input = document.getElementById('aiUserInput');
+            const text = input.value.trim();
+            if(!text) return;
+
+            appendMessage(text, 'user');
+            input.value = '';
+
+            setTimeout(() => {
+                let lower = text.toLowerCase();
+                let botReply = "Aapke is sawal ke liye shukriya! Mazeed tafseel ke liye aap direct Muhammad Ali se WhatsApp par rabta karein: <span class='ai-phone-link' onclick=\"openPhoneModal('0319 4827997', '+923194827997')\">0319 4827997</span> ya apna <a href='https://mail.google.com/mail/?view=cm&fs=1&to=muhammadali99704@gmail.com' target='_blank' class='ai-gmail-link'>Gmail Inbox</a> open karein.";
+                
+                if(lower.includes('price') || lower.includes('cost') || lower.includes('charges')) {
+                    botReply = "Prices project ki requirements par depend karti hain. Aap apne project ki detail WhatsApp (<span class='ai-phone-link' onclick=\"openPhoneModal('0319 4827997', '+923194827997')\">0319 4827997</span>) par share karke discount quotation le sakte hain.";
+                } else if(lower.includes('hello') || lower.includes('hi') || b_match(lower)) {
+                    botReply = "Salam! Main aapki kis tarah madad kar sakta hoon? Aap hamari neechay di gayi services mein se kisi par bhi click kar sakte hain.";
+                }
+
+                appendMessage(botReply, 'bot');
+            }, 600);
+        }
+
+        function b_match(str) {
+            return str.includes('salam') || str.includes('hey');
+        }
+
+        function handleAIKeypress(e) {
+            if(e.key === 'Enter') {
+                sendUserMessage();
+            }
+        }
+
+        function appendMessage(text, sender) {
+            const chatBody = document.getElementById('aiChatBody');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `chat-message ${sender}`;
+            msgDiv.innerHTML = text;
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
         function openPhoneModal(displayNum, intNum) {
             document.getElementById('modalNumberTitle').innerText = displayNum;
-            
-            // Set links for actions
             document.getElementById('callOption').href = "tel:" + intNum;
             document.getElementById('waCallOption').href = "https://wa.me/" + intNum.replace('+', '');
             document.getElementById('msgOption').href = "sms:" + intNum;
             document.getElementById('waMsgOption').href = "https://api.whatsapp.com/send?phone=" + intNum.replace('+', '');
-
             document.getElementById('phoneModal').classList.add('active');
         }
 
@@ -568,7 +1607,6 @@
             document.getElementById('phoneModal').classList.remove('active');
         }
 
-        // Image Lightbox Functions
         function openImageModal() {
             document.getElementById('imageModal').classList.add('active');
         }
@@ -577,7 +1615,6 @@
             document.getElementById('imageModal').classList.remove('active');
         }
 
-        // Close modal if clicked outside modal box
         window.onclick = function(event) {
             const phoneModal = document.getElementById('phoneModal');
             if (event.target == phoneModal) {
