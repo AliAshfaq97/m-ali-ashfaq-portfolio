@@ -341,7 +341,6 @@
             box-shadow: var(--glow-shadow);
             overflow: hidden;
             position: relative;
-            cursor: pointer;
         }
 
         .img-container img {
@@ -349,25 +348,6 @@
             height: 100%;
             object-fit: cover;
             object-position: top center;
-            transition: transform 0.3s ease;
-        }
-
-        .img-container:hover img {
-            transform: scale(1.05);
-        }
-
-        .img-hint {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(13, 10, 26, 0.7);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 11px;
-            color: var(--text-dim);
-            pointer-events: none;
-            backdrop-filter: blur(4px);
         }
 
         .contact-widget {
@@ -1020,14 +1000,6 @@
             cursor: pointer;
         }
 
-        .image-modal img {
-            max-width: 90vw;
-            max-height: 80vh;
-            border-radius: 15px;
-            border: 2px solid var(--accent-purple);
-            box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
-        }
-
         /* FOOTER */
         footer {
             text-align: center;
@@ -1038,7 +1010,7 @@
             color: var(--text-dim);
         }
 
-        /* Mobile Responsive */
+        /* Mobile Responsive & Tarteeb Control via Order */
         @media (max-width: 900px) {
             .navbar {
                 display: flex;
@@ -1049,7 +1021,26 @@
                 font-size: 16px;
             }
 
-            .hero, .about-container, .contact-container {
+            /* Hero section ko column banaya taake order apply ho sake */
+            .hero {
+                flex-direction: column;
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            /* Mobile aur Tablets par Name section sabse pehle aaye */
+            .hero-content {
+                order: 1;
+                max-width: 100%;
+            }
+
+            /* Mobile aur Tablets par Picture section dusre number par aaye */
+            .profile-card-side {
+                order: 2;
+                max-width: 100%;
+            }
+
+            .about-container, .contact-container {
                 flex-direction: column-reverse;
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -1082,10 +1073,6 @@
 
             .nav-links.active {
                 display: flex;
-            }
-
-            .profile-card-side {
-                max-width: 100%;
             }
 
             .skills-grid {
@@ -1166,11 +1153,10 @@
                     </div>
                 </div>
 
-                <!-- Profile Card Side -->
+                <!-- Profile Card Side (Picture & Contact Widget) -->
                 <div class="profile-card-side">
-                    <div class="img-container" onclick="openImageModal()">
-                      <a href="https://ibb.co/ZpDPnDHF"><img src="profile.jpg.jpeg" alt="profile-jpg" border="0"></a>
-                        <div class="img-hint"><i class="fa-solid fa-expand"></i> Click to Expand</div>
+                    <div class="img-container">
+                        <img src="https://i.ibb.co/mVWwLWv2/profile-jpg.jpg" alt="profile-jpg">
                     </div>
 
                     <div class="contact-widget">
@@ -1488,14 +1474,6 @@
         </div>
     </div>
 
-    <!-- Expanded Image Lightbox Modal -->
-    <div class="modal-overlay image-modal" id="imageModal" onclick="closeImageModal()">
-        <div style="position: relative;">
-            <span class="close-modal" onclick="closeImageModal()" style="color: white; right: 10px; top: 10px;">&times;</span>
-            <img src="https://i.ibb.co/RGbT5GNL/profile-jpg.jpg" alt="Enlarged Profile Image">
-        </div>
-    </div>
-
     <footer>
         <p>&copy; 2026 Muhammad Ali Ashfaq. All Rights Reserved.</p>
     </footer>
@@ -1604,15 +1582,7 @@
         }
 
         function closePhoneModal() {
-            document.getElementById('phoneModal').classList.remove('active');
-        }
-
-        function openImageModal() {
-            document.getElementById('imageModal').classList.add('active');
-        }
-
-        function closeImageModal() {
-            document.getElementById('imageModal').classList.remove('active');
+            document.getElementById('phoneModal'].classList.remove('active');
         }
 
         window.onclick = function(event) {
