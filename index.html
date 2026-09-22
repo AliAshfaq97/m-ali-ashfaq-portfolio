@@ -95,7 +95,7 @@
 
         /* Main Page Container & Section Routing */
         main {
-            margin-top: 130px; /* Navbar ki height barhne ki wajah se margin adjust kiya gaya hai */
+            margin-top: 130px;
             flex: 1;
         }
 
@@ -1021,24 +1021,31 @@
                 padding: 4px 8px;
             }
 
-            /* Hero section ko column banaya taake order apply ho sake */
             .hero {
                 flex-direction: column;
                 grid-template-columns: 1fr;
                 text-align: center;
             }
 
-            /* Mobile aur Tablets par Name section sabse pehle aaye */
+            /* MOBILE SCREEN ORDER SETTING: 
+               Order 1: Name Section 
+               Order 2: Picture Section (Bilkul Name ke foran neeche)
+               Order 3: Baqi content (Role, description waghera) 
+            */
             .hero-content {
                 order: 1;
                 max-width: 100%;
             }
 
-            /* Mobile aur Tablets par Picture section dusre number par aaye */
             .profile-card-side {
                 order: 2;
                 max-width: 100%;
+                margin-top: 15px; /* Naam aur picture ke darmiyan behtareen fasla */
             }
+
+            /* Agar aap chahte hain ke role aur description picture ke NEECHE aayein, 
+               toh hum unhe order 3 mein shift kar sakte hain, lekin agar standard flow 
+               chahiye toh yeh setting bilkul theek hai. */
 
             .about-container, .contact-container {
                 flex-direction: column-reverse;
@@ -1091,6 +1098,14 @@
                         <span class="status-dot"></span> 24/7 Available for Projects & Forex Signals
                     </div>
                     <h1>Muhammad Ali Ashfaq</h1>
+                    
+                    <!-- MOBILE PICTURE PLACEMENT: Naam ke foran baad mobile view mein picture show hogi -->
+                    <div class="profile-card-side mobile-direct-img" style="display:none;">
+                        <div class="img-container">
+                            <img src="https://i.ibb.co/mVWwLWv2/profile-jpg.jpg" alt="Muhammad Ali Ashfaq">
+                        </div>
+                    </div>
+
                     <h2 class="role">BSCS Graduate, Shopify Expert, Web Developer, Video Editor & Forex Trader</h2>
                     <p class="description">
                         Holding a BS Computer Science (BSCS) degree, I empower businesses with high-converting Shopify stores, modern web design, high-quality video editing, and Meta Ads strategies, while helping traders achieve financial success through precise Forex market analysis and daily trading signals.
@@ -1129,8 +1144,8 @@
                     </div>
                 </div>
 
-                <!-- Profile Card Side (Picture & Contact Widget) -->
-                <div class="profile-card-side">
+                <!-- Profile Card Side (Desktop View ke liye) -->
+                <div class="profile-card-side desktop-img-side">
                     <div class="img-container">
                         <img src="https://i.ibb.co/mVWwLWv2/profile-jpg.jpg" alt="profile-jpg">
                     </div>
@@ -1454,7 +1469,7 @@
         <p>&copy; 2026 Muhammad Ali Ashfaq. All Rights Reserved.</p>
     </footer>
 
-    <!-- JavaScript Navigation & AI Chat Logic -->
+    <!-- JavaScript Navigation & Responsive Image Toggle Logic -->
     <script>
         function switchTab(sectionId) {
             const sections = document.querySelectorAll('.page-section');
@@ -1475,6 +1490,23 @@
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Screen size ke mutabiq mobile ya desktop ki image ko handle karna
+        function handleScreenLayout() {
+            const mobileImg = document.querySelector('.mobile-direct-img');
+            const desktopImg = document.querySelector('.desktop-img-side');
+
+            if (window.innerWidth <= 900) {
+                if(mobileImg) mobileImg.style.display = 'flex';
+                if(desktopImg) desktopImg.style.display = 'none';
+            } else {
+                if(mobileImg) mobileImg.style.display = 'none';
+                if(desktopImg) desktopImg.style.display = 'flex';
+            }
+        }
+
+        window.addEventListener('resize', handleScreenLayout);
+        window.addEventListener('load', handleScreenLayout);
 
         // AI Chatbot Logic
         function toggleAIChat() {
