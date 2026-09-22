@@ -438,6 +438,50 @@
             color: var(--accent-blue);
         }
 
+        /* Explore More Section Button Container at Home End */
+        .home-explore-bottom-container {
+            margin-top: 60px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(21, 16, 42, 0.8), rgba(99, 102, 241, 0.1));
+            border: 1px solid var(--card-border);
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: var(--glow-shadow);
+        }
+
+        .home-explore-bottom-container h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .home-explore-bottom-container p {
+            color: var(--text-dim);
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .explore-trigger-btn {
+            background: linear-gradient(135deg, var(--accent-blue), var(--primary-glow));
+            color: #ffffff;
+            border: none;
+            padding: 14px 35px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .explore-trigger-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.7);
+        }
+
         /* ABOUT SECTION */
         .about-container {
             display: grid;
@@ -904,18 +948,14 @@
             justify-content: center;
         }
 
-        /* Clickable Links inside AI Chat */
         .ai-phone-link, .ai-gmail-link {
             color: var(--accent-blue);
             font-weight: 600;
             text-decoration: underline;
             cursor: pointer;
         }
-        .ai-phone-link:hover, .ai-gmail-link:hover {
-            color: var(--accent-purple);
-        }
 
-        /* MODALS */
+        /* MODALS (Phone & Explore More Menu Modal) */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -945,11 +985,18 @@
             box-shadow: var(--glow-shadow);
             text-align: center;
             position: relative;
+            animation: scaleModal 0.3s ease-in-out;
+        }
+
+        @keyframes scaleModal {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         .modal-box h3 {
             font-size: 18px;
             margin-bottom: 5px;
+            color: var(--text-light);
         }
 
         .modal-box p {
@@ -976,12 +1023,38 @@
             font-weight: 500;
             color: white;
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .call-btn { background: #3b82f6; }
         .wa-call-btn { background: #16a34a; }
         .msg-btn { background: #8b5cf6; }
         .wa-msg-btn { background: var(--whatsapp-green); }
+
+        /* Explore Menu Options Specific Styling */
+        .explore-option-link {
+            background: var(--bg-input);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            color: var(--text-light);
+            justify-content: flex-start;
+            padding: 12px 18px;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .explore-option-link i {
+            color: var(--accent-blue);
+            font-size: 16px;
+            width: 25px;
+            text-align: center;
+        }
+
+        .explore-option-link:hover {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--accent-blue);
+            transform: translateX(4px);
+        }
 
         .close-modal {
             position: absolute;
@@ -1027,11 +1100,6 @@
                 text-align: center;
             }
 
-            /* MOBILE SCREEN ORDER SETTING: 
-               Order 1: Name Section 
-               Order 2: Picture Section (Bilkul Name ke foran neeche)
-               Order 3: Baqi content (Role, description waghera) 
-            */
             .hero-content {
                 order: 1;
                 max-width: 100%;
@@ -1040,12 +1108,8 @@
             .profile-card-side {
                 order: 2;
                 max-width: 100%;
-                margin-top: 15px; /* Naam aur picture ke darmiyan behtareen fasla */
+                margin-top: 15px;
             }
-
-            /* Agar aap chahte hain ke role aur description picture ke NEECHE aayein, 
-               toh hum unhe order 3 mein shift kar sakte hain, lekin agar standard flow 
-               chahiye toh yeh setting bilkul theek hai. */
 
             .about-container, .contact-container {
                 flex-direction: column-reverse;
@@ -1099,7 +1163,7 @@
                     </div>
                     <h1>Muhammad Ali Ashfaq</h1>
                     
-                    <!-- MOBILE PICTURE PLACEMENT: Naam ke foran baad mobile view mein picture show hogi -->
+                    <!-- MOBILE PICTURE PLACEMENT -->
                     <div class="profile-card-side mobile-direct-img" style="display:none;">
                         <div class="img-container">
                             <img src="https://i.ibb.co/mVWwLWv2/profile-jpg.jpg" alt="Muhammad Ali Ashfaq">
@@ -1144,7 +1208,7 @@
                     </div>
                 </div>
 
-                <!-- Profile Card Side (Desktop View ke liye) -->
+                <!-- Profile Card Side (Desktop) -->
                 <div class="profile-card-side desktop-img-side">
                     <div class="img-container">
                         <img src="https://i.ibb.co/mVWwLWv2/profile-jpg.jpg" alt="profile-jpg">
@@ -1204,6 +1268,15 @@
                         <p>Daily accurate technical analysis, market trend forecasts, and precise entry/exit trading signals.</p>
                     </div>
                 </div>
+            </div>
+
+            <!-- PYARA SA EXPLORE MORE BUTTON AT THE END OF HOME PAGE (FOREX BOX KE NEECHE) -->
+            <div class="home-explore-bottom-container">
+                <h3>Want to discover more sections?</h3>
+                <p>Click below to seamlessly navigate through my complete portfolio overview.</p>
+                <button class="explore-trigger-btn" onclick="openExploreModal()">
+                    <i class="fa-solid fa-compass"></i> Explore More Options <i class="fa-solid fa-chevron-right" style="font-size: 11px;"></i>
+                </button>
             </div>
         </section>
 
@@ -1465,11 +1538,38 @@
         </div>
     </div>
 
+    <!-- EXPLORE MORE OPTIONS POPUP MODAL (Pyara sa menu jo home/about/services/portfolio/contact kholay ga) -->
+    <div class="modal-overlay" id="exploreModal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeExploreModal()">&times;</span>
+            <h3 style="color: var(--accent-blue); margin-bottom: 8px;">Explore Sections</h3>
+            <p>Select any option below to view details instantly:</p>
+
+            <div class="modal-actions">
+                <div class="action-link explore-option-link" onclick="navigateToSection('home')">
+                    <i class="fa-solid fa-house"></i> Home Section
+                </div>
+                <div class="action-link explore-option-link" onclick="navigateToSection('about')">
+                    <i class="fa-solid fa-user"></i> About Me
+                </div>
+                <div class="action-link explore-option-link" onclick="navigateToSection('services')">
+                    <i class="fa-solid fa-layer-group"></i> My Services
+                </div>
+                <div class="action-link explore-option-link" onclick="navigateToSection('portfolio')">
+                    <i class="fa-solid fa-briefcase"></i> Portfolio Projects
+                </div>
+                <div class="action-link explore-option-link" onclick="navigateToSection('contact')">
+                    <i class="fa-solid fa-paper-plane"></i> Contact & Support
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2026 Muhammad Ali Ashfaq. All Rights Reserved.</p>
     </footer>
 
-    <!-- JavaScript Navigation & Responsive Image Toggle Logic -->
+    <!-- JavaScript Navigation & Modals Logic -->
     <script>
         function switchTab(sectionId) {
             const sections = document.querySelectorAll('.page-section');
@@ -1507,6 +1607,20 @@
 
         window.addEventListener('resize', handleScreenLayout);
         window.addEventListener('load', handleScreenLayout);
+
+        // Explore More Modal Handlers
+        function openExploreModal() {
+            document.getElementById('exploreModal').classList.add('active');
+        }
+
+        function closeExploreModal() {
+            document.getElementById('exploreModal').classList.remove('active');
+        }
+
+        function navigateToSection(sectionId) {
+            closeExploreModal();
+            switchTab(sectionId);
+        }
 
         // AI Chatbot Logic
         function toggleAIChat() {
@@ -1587,8 +1701,12 @@
 
         window.onclick = function(event) {
             const phoneModal = document.getElementById('phoneModal');
+            const exploreModal = document.getElementById('exploreModal');
             if (event.target == phoneModal) {
                 closePhoneModal();
+            }
+            if (event.target == exploreModal) {
+                closeExploreModal();
             }
         }
     </script>
