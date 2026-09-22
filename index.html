@@ -43,10 +43,10 @@
             flex-direction: column;
         }
 
-        /* Navbar */
+        /* Navbar & Header Structure */
         .navbar {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             padding: 15px 5%;
             background: rgba(13, 10, 26, 0.95);
@@ -56,6 +56,7 @@
             width: 100%;
             z-index: 1000;
             border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+            gap: 12px;
         }
 
         .bismillah-text {
@@ -63,27 +64,27 @@
             font-size: 22px;
             color: var(--accent-blue);
             text-align: center;
-            grid-column: 2;
             text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
             letter-spacing: 1px;
+            width: 100%;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 20px;
-            grid-column: 3;
-            justify-self: end;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
             color: var(--text-dim);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             transition: 0.3s;
             cursor: pointer;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 8px;
         }
 
@@ -92,18 +93,9 @@
             background: rgba(56, 189, 248, 0.1);
         }
 
-        .menu-btn {
-            display: none;
-            font-size: 22px;
-            cursor: pointer;
-            color: var(--text-light);
-            grid-column: 3;
-            justify-self: end;
-        }
-
         /* Main Page Container & Section Routing */
         main {
-            margin-top: 85px;
+            margin-top: 130px; /* Navbar ki height barhne ki wajah se margin adjust kiya gaya hai */
             flex: 1;
         }
 
@@ -1012,13 +1004,21 @@
 
         /* Mobile Responsive & Tarteeb Control via Order */
         @media (max-width: 900px) {
-            .navbar {
-                display: flex;
-                justify-content: space-between;
+            main {
+                margin-top: 140px;
             }
 
             .bismillah-text {
-                font-size: 16px;
+                font-size: 18px;
+            }
+
+            .nav-links {
+                gap: 8px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+                padding: 4px 8px;
             }
 
             /* Hero section ko column banaya taake order apply ho sake */
@@ -1054,27 +1054,6 @@
                 justify-content: center;
             }
 
-            .menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--bg-dark);
-                flex-direction: column;
-                padding: 20px;
-                gap: 15px;
-                border-bottom: 1px solid var(--card-border);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
             .skills-grid {
                 grid-template-columns: 1fr;
             }
@@ -1100,9 +1079,6 @@
                 <li><a class="nav-link" onclick="switchTab('portfolio')">Portfolio</a></li>
                 <li><a class="nav-link" onclick="switchTab('contact')">Contact</a></li>
             </ul>
-            <div class="menu-btn" id="menuBtn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
         </nav>
     </header>
 
@@ -1497,16 +1473,8 @@
                 activeNav.classList.add('active');
             }
 
-            document.getElementById('navLinks').classList.remove('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        const menuBtn = document.getElementById('menuBtn');
-        const navLinks = document.getElementById('navLinks');
-
-        menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
 
         // AI Chatbot Logic
         function toggleAIChat() {
@@ -1582,7 +1550,7 @@
         }
 
         function closePhoneModal() {
-            document.getElementById('phoneModal'].classList.remove('active');
+            document.getElementById('phoneModal').classList.remove('active');
         }
 
         window.onclick = function(event) {
