@@ -743,6 +743,111 @@
             resize: none;
         }
 
+        /* DEDICATED REVIEWS FULL PAGE VIEW STYLING */
+        #reviews-page {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .reviews-back-bar {
+            margin-bottom: 25px;
+        }
+
+        .back-home-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            color: var(--accent-blue);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .back-home-btn:hover {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--accent-blue);
+        }
+
+        .reviews-page-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .add-review-sticky-box {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: var(--glow-shadow);
+            position: sticky;
+            top: 150px;
+        }
+
+        .all-reviews-scroll-area {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 75vh;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .review-card-item {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .review-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .reviewer-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .review-stars {
+            color: var(--star-gold);
+            font-size: 12px;
+        }
+
+        .review-card-text {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* Interactive Star Rating Selector in Form */
+        .star-rating-select {
+            display: flex;
+            justify-content: flex-start;
+            gap: 8px;
+            font-size: 22px;
+            color: var(--text-dim);
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .star-rating-select i.selected, .star-rating-select i:hover, .star-rating-select i:hover ~ i {
+            color: var(--star-gold);
+        }
+
         /* AI CHATBOT FLOATING WIDGET STYLES & GREETING BUBBLE */
         .ai-chat-wrapper {
             position: fixed;
@@ -980,7 +1085,7 @@
             cursor: pointer;
         }
 
-        /* MODALS (Phone, Explore, Reviews & Add Review) */
+        /* MODALS (Phone & Explore) */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -1058,7 +1163,6 @@
         .msg-btn { background: #8b5cf6; }
         .wa-msg-btn { background: var(--whatsapp-green); }
 
-        /* Explore / Reviews Menu Option Specific Styling */
         .explore-option-link {
             background: var(--bg-input);
             border: 1px solid rgba(168, 85, 247, 0.2);
@@ -1083,65 +1187,6 @@
             transform: translateX(4px);
         }
 
-        /* Reviews Cards Container inside See Reviews Modal */
-        .reviews-list-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            text-align: left;
-            max-height: 65vh;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-
-        .review-card-item {
-            background: var(--bg-input);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .review-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .reviewer-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-light);
-        }
-
-        .review-stars {
-            color: var(--star-gold);
-            font-size: 12px;
-        }
-
-        .review-card-text {
-            font-size: 12px;
-            color: var(--text-dim);
-            line-height: 1.5;
-        }
-
-        /* Interactive Star Rating Selector in Add Review Form */
-        .star-rating-select {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            font-size: 22px;
-            color: var(--text-dim);
-            cursor: pointer;
-            margin-bottom: 15px;
-        }
-
-        .star-rating-select i.selected, .star-rating-select i:hover, .star-rating-select i:hover ~ i {
-            color: var(--star-gold);
-        }
-
         .close-modal {
             position: absolute;
             top: 12px;
@@ -1161,7 +1206,7 @@
             color: var(--text-dim);
         }
 
-        /* Mobile Responsive & Tarteeb Control via Order */
+        /* Mobile Responsive */
         @media (max-width: 900px) {
             main {
                 margin-top: 140px;
@@ -1197,10 +1242,18 @@
                 margin-top: 15px;
             }
 
-            .about-container, .contact-container {
-                flex-direction: column-reverse;
+            .about-container, .contact-container, .reviews-page-grid {
+                flex-direction: column;
                 grid-template-columns: 1fr;
                 text-align: center;
+            }
+
+            .star-rating-select {
+                justify-content: center;
+            }
+
+            .add-review-sticky-box {
+                position: static;
             }
 
             .hero-stats {
@@ -1245,6 +1298,7 @@
                 <li><a class="nav-link" onclick="switchTab('services')">Services</a></li>
                 <li><a class="nav-link" onclick="switchTab('portfolio')">Portfolio</a></li>
                 <li><a class="nav-link" onclick="switchTab('contact')">Contact</a></li>
+                <li><a class="nav-link" onclick="switchTab('reviews-page')">Reviews</a></li>
             </ul>
         </nav>
     </header>
@@ -1374,7 +1428,7 @@
                     <button class="explore-trigger-btn" onclick="openExploreModal()">
                         <i class="fa-solid fa-compass"></i> Explore More <i class="fa-solid fa-chevron-right" style="font-size: 11px;"></i>
                     </button>
-                    <button class="reviews-trigger-btn" onclick="openReviewsMenuModal()">
+                    <button class="reviews-trigger-btn" onclick="switchTab('reviews-page')">
                         <i class="fa-solid fa-star"></i> Reviews <i class="fa-solid fa-chevron-right" style="font-size: 11px;"></i>
                     </button>
                 </div>
@@ -1573,6 +1627,255 @@
                 </form>
             </div>
         </section>
+
+        <!-- 6. DEDICATED REVIEWS PAGE (22 Mix Reviews & Add Form) -->
+        <section id="reviews-page" class="page-section">
+            <div class="reviews-back-bar">
+                <button class="back-home-btn" onclick="switchTab('home')">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+
+            <div class="section-title">
+                <h2>Client Feedback & Reviews</h2>
+                <p>Read what our clients say about our Shopify stores, Forex Gold signals & video editing.</p>
+            </div>
+
+            <div class="reviews-page-grid">
+                <!-- Left Side: Add Review Form Box -->
+                <div class="add-review-sticky-box">
+                    <h3 style="color: var(--star-gold); margin-bottom: 5px;"><i class="fa-solid fa-pen-to-square"></i> Share Your Review</h3>
+                    <p style="font-size: 13px; color: var(--text-dim); margin-bottom: 20px;">Apna experience share karein jo foran list mein add ho jaye ga!</p>
+
+                    <form class="contact-form" onsubmit="submitUserReview(event)" style="padding: 0; background: none; border: none; box-shadow: none;">
+                        <div class="form-group" style="text-align: left; margin-bottom: 15px;">
+                            <label>Your Name</label>
+                            <input type="text" id="reviewAuthorName" placeholder="e.g. Hamza Ali / Sana Tariq" required>
+                        </div>
+
+                        <div class="form-group" style="text-align: left; margin-bottom: 15px;">
+                            <label>Rate Your Experience</label>
+                            <div class="star-rating-select" id="starRatingSelect">
+                                <i class="fa-solid fa-star selected" data-value="1" onclick="setRating(1)"></i>
+                                <i class="fa-solid fa-star selected" data-value="2" onclick="setRating(2)"></i>
+                                <i class="fa-solid fa-star selected" data-value="3" onclick="setRating(3)"></i>
+                                <i class="fa-solid fa-star selected" data-value="4" onclick="setRating(4)"></i>
+                                <i class="fa-solid fa-star selected" data-value="5" onclick="setRating(5)"></i>
+                            </div>
+                            <input type="hidden" id="selectedRatingValue" value="5">
+                        </div>
+
+                        <div class="form-group" style="text-align: left; margin-bottom: 20px;">
+                            <label>Your Review Message</label>
+                            <textarea id="reviewTextContent" placeholder="Write about your experience with Forex signals, Shopify, or video editing..." style="height: 100px;" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn primary-btn" style="width: 100%; justify-content: center;"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
+                    </form>
+                </div>
+
+                <!-- Right Side: Total 22 Mix Client Reviews List Container -->
+                <div class="all-reviews-scroll-area" id="reviewsListContainer">
+                    <!-- Review 1 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Muhammad Usman</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Ali bhai ke XAUUSD (Gold) signals kamaal ke hain! Pichle hafte Gold ki buy entry ne zabardast profit diya. Highly recommended for scalpers.</p>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Ayesha Khan</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Maine apni e-commerce brand ke liye Shopify store banwaya tha. Design bht pyara hai aur speed bhi fast hai. Sales bhi start ho gayi hain!</p>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Ahmed Raza</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Gold aur Forex trading mein agar accurate levels chahiye toh Ali bhai ka channel best hai. Risk management guidance bhi boht zabardast hai.</p>
+                    </div>
+
+                    <!-- Review 4 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Fatima Noor</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Meta Ads campaigns aur video editing ke liye Ali se hire kiya tha. ROAS mein acha khasa izafa dekhne ko mila. Very professional service!</p>
+                    </div>
+
+                    <!-- Review 5 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Bilal Ahmed</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Bht hi talented developer hain. Shopify store mein kuch custom CSS changes karwani thin jo unhone foran karke din.</p>
+                    </div>
+
+                    <!-- Review 6 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Zainab Malik</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">TikTok aur Reels ki video editing ki quality lajawab hai. Mere page par engagement double ho gayi hai videos upload hone ke baad.</p>
+                    </div>
+
+                    <!-- Review 7 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Ali Raza</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Forex signals ki accuracy lagbhag 85% tak hai jo ke boht achi baat hai. Main rozana analysis follow karta hoon.</p>
+                    </div>
+
+                    <!-- Review 8 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Sana Tariq</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">24/7 support ka jo wada tha uspar poora utre hain. Raat ko bhi store mein masla aya toh Ali bhai ne foran fix kar diya.</p>
+                    </div>
+
+                    <!-- Review 9 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Danish Farooq</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">BSCS background hone ki wajah se inka technical concept bht clear hai. Website speed optimization bht zabardast ki hai.</p>
+                    </div>
+
+                    <!-- Review 10 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Hira Butt</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Shopify automated dropshipping store build karwaya tha. Product research aur layout boht professional lag raha hai.</p>
+                    </div>
+
+                    <!-- Review 11 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Hamza Sheeraz</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Gold trading mein TP hit hone ki jo khushi hai wo Ali bhai ke signals ki wajah se mili hai. Best trader!</p>
+                    </div>
+
+                    <!-- Review 12 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Mehwish Hayat</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Video ad creatives bht creative banaye hain unhone jo Facebook ads par kafi acha convert ho rahe hain.</p>
+                    </div>
+
+                    <!-- Review 13 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Umer Akmal</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Communication bht achi hai aur kaam time par deliver kar dete hain. Fully satisfied with web dev service.</p>
+                    </div>
+
+                    <!-- Review 14 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Kiran Shahzadi</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Store management ke liye reliable person ki talaash thi jo ab khatam ho gayi hai. Ali sab kuch khud handle kar lete hain.</p>
+                    </div>
+
+                    <!-- Review 15 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Saad Qureshi</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Forex market ki daily update aur technical levels bht clear hote hain inke. Main long-term subscriber hoon.</p>
+                    </div>
+
+                    <!-- Review 16 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Nida Yasir</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Instagram Reels editing ke liye best editor hain Pakistan mein. Trend ke mutabiq videos edit karte hain.</p>
+                    </div>
+
+                    <!-- Review 17 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Fahad Mustafa</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Shopify store ka theme customization aur design layout market rates se behtareen aur reasonable price mein kiya.</p>
+                    </div>
+
+                    <!-- Review 18 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Rabia Anjum</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Meta ads setup aur audience targeting itni achi thi ke pehle hi din se orders aane shuru ho gaye.</p>
+                    </div>
+
+                    <!-- Review 19 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Zohaib Hassan</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Gold (XAUUSD) ke signals bht reliable hain. Stop loss hamesha chota hota hai aur reward bara hota hai.</p>
+                    </div>
+
+                    <!-- Review 20 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Jawad Ahmed</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Full support milti hai kisi bhi waqt. Ali bhai bht hardworking aur honest professional hain.</p>
+                    </div>
+
+                    <!-- Review 21 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Marium Naeem</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">YouTube Shorts ki editing bht professional style mein ki hai. Highly recommended to everyone!</p>
+                    </div>
+
+                    <!-- Review 22 -->
+                    <div class="review-card-item">
+                        <div class="review-card-header">
+                            <span class="reviewer-name">Shoaib Akhtar</span>
+                            <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-card-text">Shopify store migration ka kaam tha jo bina kisi data loss ke seamlessly complete kar diya. Great job!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- AI Assistant Floating Widget with Greeting Bubble -->
@@ -1666,120 +1969,11 @@
         </div>
     </div>
 
-    <!-- REVIEWS OPTIONS MENU MODAL (See Reviews & Add Review) -->
-    <div class="modal-overlay" id="reviewsMenuModal">
-        <div class="modal-box">
-            <span class="close-modal" onclick="closeReviewsMenuModal()">&times;</span>
-            <h3 style="color: var(--star-gold); margin-bottom: 8px;"><i class="fa-solid fa-star"></i> Client Reviews & Feedback</h3>
-            <p>Choose what you would like to do:</p>
-
-            <div class="modal-actions">
-                <div class="action-link explore-option-link" onclick="openSeeReviewsModal()">
-                    <i class="fa-solid fa-comments" style="color: var(--star-gold);"></i> See Reviews (Client Feedback)
-                </div>
-                <div class="action-link explore-option-link" onclick="openAddReviewModal()">
-                    <i class="fa-solid fa-pen-to-square" style="color: var(--accent-blue);"></i> Add Review (Share Your Experience)
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SEE REVIEWS MODAL (Displaying Pakistani Names, Gold XAUUSD Forex, Ads & Shopify Reviews) -->
-    <div class="modal-overlay" id="seeReviewsModal">
-        <div class="modal-box" style="max-width: 480px;">
-            <span class="close-modal" onclick="closeSeeReviewsModal()">&times;</span>
-            <h3 style="color: var(--star-gold); margin-bottom: 5px;">What Clients Say</h3>
-            <p style="margin-bottom: 15px;">Authentic feedback about Forex Gold signals, Shopify stores & Meta Ads.</p>
-
-            <div class="reviews-list-container" id="reviewsListContainer">
-                <!-- Dynamic & Static Reviews -->
-                <div class="review-card-item">
-                    <div class="review-card-header">
-                        <span class="reviewer-name">Muhammad Usman</span>
-                        <div class="review-stars">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                    </div>
-                    <p class="review-card-text">Ali bhai ke XAUUSD (Gold) signals kamaal ke hain! Pichle hafte Gold ki buy entry ne zabardast profit diya. Highly recommended for scalpers.</p>
-                </div>
-
-                <div class="review-card-item">
-                    <div class="review-card-header">
-                        <span class="reviewer-name">Ayesha Khan</span>
-                        <div class="review-stars">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                        </div>
-                    </div>
-                    <p class="review-card-text">Maine apni e-commerce brand ke liye Shopify store banwaya tha. Design bht pyara hai aur speed bhi fast hai. Sales bhi start ho gayi hain!</p>
-                </div>
-
-                <div class="review-card-item">
-                    <div class="review-card-header">
-                        <span class="reviewer-name">Ahmed Raza</span>
-                        <div class="review-stars">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                    </div>
-                    <p class="review-card-text">Gold (XAUUSD) aur Forex trading mein agar accurate levels chahiye toh Ali bhai ka channel best hai. Risk management guidance bhi boht zabardast hai.</p>
-                </div>
-
-                <div class="review-card-item">
-                    <div class="review-card-header">
-                        <span class="reviewer-name">Fatima Noor</span>
-                        <div class="review-stars">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="text-dim fa-regular fa-star"></i>
-                        </div>
-                    </div>
-                    <p class="review-card-text">Meta Ads campaigns aur video editing ke liye Ali se hire kiya tha. ROAS mein acha khasa izafa dekhne ko mila. Very professional service!</p>
-                </div>
-            </div>
-
-            <div style="margin-top: 20px;">
-                <button class="btn primary-btn" onclick="openAddReviewModal()" style="font-size: 13px; padding: 8px 20px;">Add Your Review</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ADD REVIEW FORM MODAL -->
-    <div class="modal-overlay" id="addReviewModal">
-        <div class="modal-box">
-            <span class="close-modal" onclick="closeAddReviewModal()">&times;</span>
-            <h3 style="color: var(--accent-blue); margin-bottom: 5px;">Share Your Review</h3>
-            <p style="margin-bottom: 15px;">Your feedback helps others grow!</p>
-
-            <form class="contact-form" onsubmit="submitUserReview(event)" style="padding: 0; background: none; border: none; box-shadow: none;">
-                <div class="form-group" style="text-align: left; margin-bottom: 12px;">
-                    <label>Your Name</label>
-                    <input type="text" id="reviewAuthorName" placeholder="e.g. Hamza Ali / Sana Tariq" required>
-                </div>
-
-                <div class="form-group" style="text-align: left; margin-bottom: 12px;">
-                    <label>Rate Your Experience</label>
-                    <div class="star-rating-select" id="starRatingSelect">
-                        <i class="fa-solid fa-star selected" data-value="1" onclick="setRating(1)"></i>
-                        <i class="fa-solid fa-star selected" data-value="2" onclick="setRating(2)"></i>
-                        <i class="fa-solid fa-star selected" data-value="3" onclick="setRating(3)"></i>
-                        <i class="fa-solid fa-star selected" data-value="4" onclick="setRating(4)"></i>
-                        <i class="fa-solid fa-star selected" data-value="5" onclick="setRating(5)"></i>
-                    </div>
-                    <input type="hidden" id="selectedRatingValue" value="5">
-                </div>
-
-                <div class="form-group" style="text-align: left; margin-bottom: 20px;">
-                    <label>Your Review (Shopify, Gold Signals, Ads etc.)</label>
-                    <textarea id="reviewTextContent" placeholder="Write about your experience with Forex signals, Shopify or video editing..." style="height: 90px;" required></textarea>
-                </div>
-
-                <button type="submit" class="btn primary-btn" style="width: 100%; justify-content: center;"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
-            </form>
-        </div>
-    </div>
-
     <footer>
         <p>&copy; 2026 Muhammad Ali Ashfaq. All Rights Reserved.</p>
     </footer>
 
-    <!-- JavaScript Navigation & Modals Logic -->
+    <!-- JavaScript Navigation & Reviews Logic -->
     <script>
         function switchTab(sectionId) {
             const sections = document.querySelectorAll('.page-section');
@@ -1793,7 +1987,7 @@
             const navLinksList = document.querySelectorAll('.nav-link');
             navLinksList.forEach(link => link.classList.remove('active'));
             
-            const activeNav = Array.from(navLinksList).find(link => link.getAttribute('onclick').includes(sectionId));
+            const activeNav = Array.from(navLinksList).find(link => link.getAttribute('onclick') && link.getAttribute('onclick').includes(sectionId));
             if (activeNav) {
                 activeNav.classList.add('active');
             }
@@ -1832,34 +2026,6 @@
             switchTab(sectionId);
         }
 
-        // Reviews Menu Modal Handlers
-        function openReviewsMenuModal() {
-            document.getElementById('reviewsMenuModal').classList.add('active');
-        }
-
-        function closeReviewsMenuModal() {
-            document.getElementById('reviewsMenuModal').classList.remove('active');
-        }
-
-        function openSeeReviewsModal() {
-            closeReviewsMenuModal();
-            document.getElementById('seeReviewsModal').classList.add('active');
-        }
-
-        function closeSeeReviewsModal() {
-            document.getElementById('seeReviewsModal').classList.remove('active');
-        }
-
-        function openAddReviewModal() {
-            closeReviewsMenuModal();
-            closeSeeReviewsModal();
-            document.getElementById('addReviewModal').classList.add('active');
-        }
-
-        function closeAddReviewModal() {
-            document.getElementById('addReviewModal').classList.remove('active');
-        }
-
         // Star Rating Selector Logic
         function setRating(ratingVal) {
             document.getElementById('selectedRatingValue').value = ratingVal;
@@ -1890,7 +2056,7 @@
                 if(i <= rating) {
                     starsHTML += '<i class="fa-solid fa-star"></i>';
                 } else {
-                    starsHTML += '<i class="text-dim fa-regular fa-star"></i>';
+                    starsHTML += '<i class="fa-regular fa-star"></i>';
                 }
             }
 
@@ -1914,9 +2080,7 @@
             document.getElementById('reviewTextContent').value = '';
             setRating(5);
 
-            closeAddReviewModal();
             alert('Shukriya! Aapka review kamyabi ke sath add ho gaya hai.');
-            openSeeReviewsModal();
         }
 
         function escapeHtml(str) {
@@ -2003,15 +2167,9 @@
         window.onclick = function(event) {
             const phoneModal = document.getElementById('phoneModal');
             const exploreModal = document.getElementById('exploreModal');
-            const reviewsMenuModal = document.getElementById('reviewsMenuModal');
-            const seeReviewsModal = document.getElementById('seeReviewsModal');
-            const addReviewModal = document.getElementById('addReviewModal');
 
             if (event.target == phoneModal) closePhoneModal();
             if (event.target == exploreModal) closeExploreModal();
-            if (event.target == reviewsMenuModal) closeReviewsMenuModal();
-            if (event.target == seeReviewsModal) closeSeeReviewsModal();
-            if (event.target == addReviewModal) closeAddReviewModal();
         }
     </script>
 </body>
