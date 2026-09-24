@@ -1834,4 +1834,185 @@
 
         // Reviews Menu Modal Handlers
         function openReviewsMenuModal() {
-            document.getElementById('reviewsMenuModal').classLi
+            document.getElementById('reviewsMenuModal').classList.add('active');
+        }
+
+        function closeReviewsMenuModal() {
+            document.getElementById('reviewsMenuModal').classList.remove('active');
+        }
+
+        function openSeeReviewsModal() {
+            closeReviewsMenuModal();
+            document.getElementById('seeReviewsModal').classList.add('active');
+        }
+
+        function closeSeeReviewsModal() {
+            document.getElementById('seeReviewsModal').classList.remove('active');
+        }
+
+        function openAddReviewModal() {
+            closeReviewsMenuModal();
+            closeSeeReviewsModal();
+            document.getElementById('addReviewModal').classList.add('active');
+        }
+
+        function closeAddReviewModal() {
+            document.getElementById('addReviewModal').classList.remove('active');
+        }
+
+        // Star Rating Selector Logic
+        function setRating(ratingVal) {
+            document.getElementById('selectedRatingValue').value = ratingVal;
+            const stars = document.querySelectorAll('#starRatingSelect i');
+            stars.forEach((star, index) => {
+                if(index < ratingVal) {
+                    star.classList.add('fa-solid', 'selected');
+                    star.classList.remove('fa-regular');
+                } else {
+                    star.classList.remove('fa-solid', 'selected');
+                    star.classList.add('fa-regular');
+                }
+            });
+        }
+
+        // Submit User Review Logic
+        function submitUserReview(event) {
+            event.preventDefault();
+            const name = document.getElementById('reviewAuthorName').value.trim();
+            const rating = parseInt(document.getElementById('selectedRatingValue').value);
+            const text = document.getElementById('reviewTextContent').value.trim();
+
+            if(!name || !text) return;
+
+            // Generate stars HTML
+            let starsHTML = '';
+            for(let i = 1; i <= 5; i++) {
+                if(i <= rating) {
+                    starsHTML += '<i class="fa-solid fa-star"></i>';
+                } else {
+                    starsHTML += '<i class="text-dim fa-regular fa-star"></i>';
+                }
+            }
+
+            // Create new review item element
+            const reviewsContainer = document.getElementById('reviewsListContainer');
+            const newCard = document.createElement('div');
+            newCard.className = 'review-card-item';
+            newCard.innerHTML = `
+                <div class="review-card-header">
+                    <span class="reviewer-name">${escapeHtml(name)}</span>
+                    <div class="review-stars">${starsHTML}</div>
+                </div>
+                <p class="review-card-text">${escapeHtml(text)}</p>
+            `;
+
+            // Prepend new review to the top of list
+            reviewsContainer.insertBefore(newCard, reviewsContainer.firstChild);
+
+            // Reset form
+            document.getElementById('reviewAuthorName').value = '';
+            document.getElementById('reviewTextContent').value = '';
+            setRating(5);
+
+            closeAddReviewModal();
+            alert('Shukriya! Aapka review kamyabi ke sath add ho gaya hai.');
+            openSeeReviewsModal();
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        // AI Chatbot Logic
+        function toggleAIChat() {
+            const chatContainer = document.getElementById('aiChatContainer');
+            chatContainer.classList.toggle('active');
+        }
+
+        function sendQuickQuery(topic) {
+            appendMessage(topic, 'user');
+            setTimeout(() => {
+                let reply = "";
+                if(topic.includes('Shopify')) {
+                    reply = "Muhammad Ali Ashfaq ek expert Shopify Developer hain jo high-converting aur responsive stores banate hain. Mazeed details ke liye aap unhein WhatsApp (<span class='ai-phone-link' onclick=\"openPhoneModal('0319 4827997', '+923194827997')\">0319 4827997</span>) par rabta kar sakte hain ya apna email <a href='https://mail.google.com/mail/?view=cm&fs=1&to=muhammadali99704@gmail.com' target='_blank' class='ai-gmail-link'>Gmail Inbox</a> ke zariye bhej sakte hain.";
+                } else if(topic.includes('Video')) {
+                    reply = "Video editing services mein Reels, TikToks, YouTube Shorts aur high-impact ad creatives shamil hain. Aap contact section se ya <span class='ai-phone-link' onclick=\"openPhoneModal('0319 4827997', '+923194827997')\">0319 4827997</span> par click karke direct baat kar sakte hain!";
+                } else if(topic.includes('Forex')) {
+                    reply = "Ali daily accurate technical analysis aur 85%+ accuracy ke sath Forex trading signals (khaas tor par Gold XAUUSD) provide karte hain.";
+                } else if(topic.includes('Contact')) {
+                    reply = "Aap Ali se direct <span class='ai-phone-link' onclick=\"openPhoneModal('0319 4827997', '+923194827997')\">0319 4827997</span> par call ya WhatsApp ke zariye 24/7 rabta kar sakte hain, ya direct <a href='https://mail.google.com/mail/?view=cm&fs=1&to=muhammadali99704@gmail.com' target='_blank' class='ai-gmail-link'>Gmail Inbox</a> khol kar email bhej sakte hain.";
+                }
+                appendMessage(reply, 'bot');
+            }, 500);
+        }
+
+        function sendUserMessage() {
+            const input = document.getElementById('aiUserInput');
+            const text = input.value.trim();
+            if(!text) return;
+
+            appendMessage(text, 'user');
+            input.value = '';
+
+            setTimeout(() => {
+                let lower = text.toLowerCase();
+                let botReply = "Aapke is sawal ke liye shukriya! Mazeed tafseel ke liye aap direct Muhammad Ali se WhatsApp par rabta karein: <span class='ai-phone-link' onclick=\"openPhoneModal('0319 4827997', '+923194827997')\">0319 4827997</span> ya apna <a href='https://mail.google.com/mail/?view=cm&fs=1&to=muhammadali99704@gmail.com' target='_blank' class='ai-gmail-link'>Gmail Inbox</a> open karein.";
+                
+                if(lower.includes('price') || lower.includes('cost') || lower.includes('charges')) {
+                    botReply = "Prices project ki requirements par depend karti hain. Aap apne project ki detail WhatsApp (<span class='ai-phone-link' onclick=\"openPhoneModal('0319 4827997', '+923194827997')\">0319 4827997</span>) par share karke discount quotation le sakte hain.";
+                } else if(lower.includes('hello') || lower.includes('hi') || b_match(lower)) {
+                    botReply = "Salam! Main aapki kis tarah madad kar sakta hoon? Aap hamari neechay di gayi services mein se kisi par bhi click kar sakte hain.";
+                }
+
+                appendMessage(botReply, 'bot');
+            }, 600);
+        }
+
+        function b_match(str) {
+            return str.includes('salam') || str.includes('hey');
+        }
+
+        function handleAIKeypress(e) {
+            if(e.key === 'Enter') {
+                sendUserMessage();
+            }
+        }
+
+        function appendMessage(text, sender) {
+            const chatBody = document.getElementById('aiChatBody');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `chat-message ${sender}`;
+            msgDiv.innerHTML = text;
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function openPhoneModal(displayNum, intNum) {
+            document.getElementById('modalNumberTitle').innerText = displayNum;
+            document.getElementById('callOption').href = "tel:" + intNum;
+            document.getElementById('waCallOption').href = "https://wa.me/" + intNum.replace('+', '');
+            document.getElementById('msgOption').href = "sms:" + intNum;
+            document.getElementById('waMsgOption').href = "https://api.whatsapp.com/send?phone=" + intNum.replace('+', '');
+            document.getElementById('phoneModal').classList.add('active');
+        }
+
+        function closePhoneModal() {
+            document.getElementById('phoneModal').classList.remove('active');
+        }
+
+        window.onclick = function(event) {
+            const phoneModal = document.getElementById('phoneModal');
+            const exploreModal = document.getElementById('exploreModal');
+            const reviewsMenuModal = document.getElementById('reviewsMenuModal');
+            const seeReviewsModal = document.getElementById('seeReviewsModal');
+            const addReviewModal = document.getElementById('addReviewModal');
+
+            if (event.target == phoneModal) closePhoneModal();
+            if (event.target == exploreModal) closeExploreModal();
+            if (event.target == reviewsMenuModal) closeReviewsMenuModal();
+            if (event.target == seeReviewsModal) closeSeeReviewsModal();
+            if (event.target == addReviewModal) closeAddReviewModal();
+        }
+    </script>
+</body>
+</html>
