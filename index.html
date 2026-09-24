@@ -1272,14 +1272,21 @@
                 text-align: left;
             }
 
+            /* Buttons wrapper adjustment to keep buttons in one line on mobile */
             .explore-buttons-wrapper {
-                flex-direction: column;
-                gap: 10px;
+                flex-direction: row;
+                gap: 8px;
+                justify-content: center;
+                align-items: center;
             }
 
             .explore-trigger-btn, .reviews-trigger-btn {
-                width: 100%;
+                flex: 1;
+                width: auto;
+                padding: 10px 14px;
+                font-size: 13px;
                 justify-content: center;
+                white-space: nowrap;
             }
         }
     </style>
