@@ -3,140 +3,1835 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website with Top & Bottom Reviews</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: Arial, sans-serif; line-height: 1.6; background-color: #f4f4f4; }
-        
-        /* Navbar Styling */
-        nav { background: #333; color: #fff; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 20px; font-weight: bold; }
-        nav ul { list-style: none; display: flex; align-items: center; }
-        nav ul li { position: relative; margin-left: 20px; }
-        nav ul li a { color: #fff; text-decoration: none; padding: 8px 12px; display: block; transition: 0.3s; }
-        nav ul li a:hover { background: #555; border-radius: 4px; }
-        
-        /* Dropdown Menu */
-        .dropdown-content { display: none; position: absolute; background: #fff; color: #333; min-width: 180px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 1; top: 100%; left: 0; border-radius: 4px; overflow: hidden; }
-        .dropdown-content a { color: #333; padding: 10px 15px; display: block; text-decoration: none; }
-        .dropdown-content a:hover { background: #f1f1f1; }
-        .dropdown:hover .dropdown-content { display: block; }
+    <title>Muhammad Ali Ashfaq | Portfolio</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        /* Container & Sections */
-        .container { max-width: 900px; margin: 30px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        h2 { margin-bottom: 20px; color: #333; border-bottom: 2px solid #007BFF; padding-bottom: 10px; }
-        
-        /* Review Cards */
-        .review-card { background: #f9f9f9; border-left: 4px solid #007BFF; padding: 15px; margin-bottom: 15px; border-radius: 4px; }
-        .review-card h4 { margin-bottom: 5px; color: #444; }
-        .stars { color: #f39c12; margin-bottom: 5px; }
-        
-        /* Bottom Button */
-        .bottom-btn-container { text-align: center; margin: 40px 0; }
-        .btn { background: #007BFF; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; transition: 0.3s; }
-        .btn:hover { background: #0056b3; }
+    <style>
+        /* Dark Glow Theme Variables */
+        :root {
+            --bg-dark: #0d0a1a;
+            --bg-card: #15102a;
+            --bg-input: #1f183d;
+            --primary-glow: #6366f1;
+            --accent-purple: #a855f7;
+            --accent-blue: #38bdf8;
+            --whatsapp-green: #25d366;
+            --star-gold: #fbbf24;
+            --text-light: #ffffff;
+            --text-dim: #94a3b8;
+            --card-border: rgba(168, 85, 247, 0.3);
+            --glow-shadow: 0 0 25px rgba(99, 102, 241, 0.25);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar & Header Structure */
+        .navbar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(13, 10, 26, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+            gap: 12px;
+        }
+
+        .bismillah-text {
+            font-family: 'Amiri', serif;
+            font-size: 22px;
+            color: var(--accent-blue);
+            text-align: center;
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+            letter-spacing: 1px;
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: 0.3s;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        /* Main Page Container & Section Routing */
+        main {
+            margin-top: 130px;
+            flex: 1;
+        }
+
+        .page-section {
+            display: none;
+            padding: 40px 8% 80px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .page-section.active-section {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Headings */
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-light);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-dim);
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 28px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, var(--primary-glow), var(--accent-purple));
+            color: var(--text-light);
+            border: none;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+        }
+
+        .primary-btn:hover {
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            background: transparent;
+            border: 1px solid var(--accent-purple);
+            color: var(--text-light);
+        }
+
+        .secondary-btn:hover {
+            background: rgba(168, 85, 247, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* HERO / HOME SECTION */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--whatsapp-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--whatsapp-green);
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            line-height: 1.15;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 40%, var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .role {
+            font-size: 18px;
+            color: var(--accent-purple);
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+
+        .description {
+            color: var(--text-dim);
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+            background: rgba(21, 16, 42, 0.6);
+            border: 1px solid var(--card-border);
+            padding: 15px;
+            border-radius: 16px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item h4 {
+            font-size: 18px;
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+
+        /* 24/7 Support Banner Styling */
+        .support-banner-247 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(56, 189, 248, 0.1));
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            padding: 12px 20px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.15);
+        }
+
+        .support-banner-247 i {
+            font-size: 26px;
+            color: var(--whatsapp-green);
+        }
+
+        .support-banner-text h5 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .support-banner-text h5 .badge-247 {
+            background: var(--whatsapp-green);
+            color: #000;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .support-banner-text p {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin: 0;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Profile Card Side */
+        .profile-card-side {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            width: 100%;
+            max-width: 330px;
+        }
+
+        .img-container {
+            width: 100%;
+            height: 360px;
+            background: var(--bg-card);
+            border: 2px solid var(--card-border);
+            border-radius: 20px;
+            box-shadow: var(--glow-shadow);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .contact-widget {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: var(--glow-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.1);
+            transform: translateX(3px);
+        }
+
+        .contact-item i {
+            font-size: 18px;
+            color: var(--accent-blue);
+            width: 24px;
+            text-align: center;
+        }
+
+        .contact-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-text label {
+            font-size: 11px;
+            color: var(--text-dim);
+            cursor: pointer;
+        }
+
+        .contact-text span {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-light);
+            word-break: break-all;
+        }
+
+        /* HOME SERVICES PREVIEW SECTION */
+        .home-extra-section {
+            margin-top: 50px;
+        }
+
+        .home-section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
+        }
+
+        .home-section-heading h3 {
+            font-size: 22px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .home-section-heading h3 i {
+            color: var(--accent-blue);
+        }
+
+        .home-section-heading a {
+            color: var(--accent-purple);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .home-section-heading a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Explore More Section Button Container at Home End */
+        .home-explore-bottom-container {
+            margin-top: 60px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(21, 16, 42, 0.8), rgba(99, 102, 241, 0.1));
+            border: 1px solid var(--card-border);
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: var(--glow-shadow);
+        }
+
+        .home-explore-bottom-container h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .home-explore-bottom-container p {
+            color: var(--text-dim);
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .explore-buttons-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .explore-trigger-btn {
+            background: linear-gradient(135deg, var(--accent-blue), var(--primary-glow));
+            color: #ffffff;
+            border: none;
+            padding: 14px 30px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .reviews-trigger-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #ffffff;
+            border: none;
+            padding: 14px 30px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(245, 158, 11, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .explore-trigger-btn:hover, .reviews-trigger-btn:hover {
+            transform: translateY(-3px);
+            opacity: 0.95;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ABOUT SECTION */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-box {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--glow-shadow);
+        }
+
+        .about-box h3 {
+            font-size: 22px;
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+        }
+
+        .about-box p {
+            color: var(--text-dim);
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .skill-card i {
+            font-size: 24px;
+            color: var(--accent-purple);
+        }
+
+        .skill-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* SERVICES SECTION */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            padding: 30px;
+            border-radius: 18px;
+            transition: 0.3s ease;
+            box-shadow: var(--glow-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-blue);
+        }
+
+        .service-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary-glow), var(--accent-purple));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        .service-card p {
+            color: var(--text-dim);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* PORTFOLIO SECTION */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-card {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--glow-shadow);
+            transition: 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 180px;
+            background: #1f183d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-purple);
+            font-size: 40px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .portfolio-info {
+            padding: 20px;
+        }
+
+        .portfolio-info h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .portfolio-info p {
+            color: var(--text-dim);
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        /* CONTACT SECTION */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+        }
+
+        .contact-info-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-card-box {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            padding: 20px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: 0.3s;
+        }
+
+        .contact-card-box:hover {
+            border-color: var(--accent-blue);
+            transform: translateX(4px);
+        }
+
+        .contact-card-box i {
+            font-size: 26px;
+            color: var(--accent-blue);
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--glow-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--bg-input);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent-purple);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        /* AI CHATBOT FLOATING WIDGET STYLES & GREETING BUBBLE */
+        .ai-chat-wrapper {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .ai-greeting-bubble {
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-input));
+            border: 1px solid var(--card-border);
+            color: var(--text-light);
+            padding: 10px 16px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            margin-bottom: 12px;
+            animation: bounceBubble 2s infinite ease-in-out;
+            max-width: 240px;
+            text-align: right;
+            position: relative;
+        }
+
+        .ai-greeting-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            right: 22px;
+            width: 12px;
+            height: 12px;
+            background: var(--bg-input);
+            border-right: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounceBubble {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .ai-chat-btn {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-glow), var(--accent-purple));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.6);
+            transition: 0.3s ease;
+            animation: pulseGlow 2s infinite;
+        }
+
+        .ai-chat-btn:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(168, 85, 247, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
+        }
+
+        .ai-chat-container {
+            position: fixed;
+            bottom: 95px;
+            right: 25px;
+            width: 350px;
+            max-width: calc(100vw - 40px);
+            height: 480px;
+            background: var(--bg-card);
+            border: 2px solid var(--card-border);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            z-index: 1500;
+            overflow: hidden;
+            transform: scale(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .ai-chat-container.active {
+            transform: scale(1);
+        }
+
+        .ai-chat-header {
+            background: linear-gradient(135deg, #1f183d, var(--bg-card));
+            padding: 15px;
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ai-chat-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-avatar {
+            width: 35px;
+            height: 35px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #0d0a1a;
+            font-weight: bold;
+        }
+
+        .ai-chat-title h4 {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .ai-chat-title span {
+            font-size: 10px;
+            color: var(--whatsapp-green);
+            display: block;
+        }
+
+        .ai-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .ai-chat-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: rgba(13, 10, 26, 0.4);
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .chat-message.bot {
+            background: var(--bg-input);
+            color: var(--text-light);
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .chat-message.user {
+            background: var(--primary-glow);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .ai-quick-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .quick-chip {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--accent-blue);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .quick-chip:hover {
+            background: var(--accent-blue);
+            color: #0d0a1a;
+        }
+
+        .ai-chat-footer {
+            padding: 10px 15px;
+            background: var(--bg-card);
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            gap: 8px;
+        }
+
+        .ai-chat-footer input {
+            flex: 1;
+            background: var(--bg-input);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 12px;
+            border-radius: 20px;
+            color: white;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .ai-chat-footer button {
+            background: var(--accent-purple);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ai-phone-link, .ai-gmail-link {
+            color: var(--accent-blue);
+            font-weight: 600;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* MODALS (Phone, Explore, Reviews & Add Review) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--bg-card);
+            border: 2px solid var(--card-border);
+            border-radius: 18px;
+            padding: 25px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: var(--glow-shadow);
+            text-align: center;
+            position: relative;
+            animation: scaleModal 0.3s ease-in-out;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes scaleModal {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-box h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .modal-box p {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-bottom: 20px;
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .action-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .call-btn { background: #3b82f6; }
+        .wa-call-btn { background: #16a34a; }
+        .msg-btn { background: #8b5cf6; }
+        .wa-msg-btn { background: var(--whatsapp-green); }
+
+        /* Explore / Reviews Menu Option Specific Styling */
+        .explore-option-link {
+            background: var(--bg-input);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            color: var(--text-light);
+            justify-content: flex-start;
+            padding: 12px 18px;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .explore-option-link i {
+            color: var(--accent-blue);
+            font-size: 16px;
+            width: 25px;
+            text-align: center;
+        }
+
+        .explore-option-link:hover {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--accent-blue);
+            transform: translateX(4px);
+        }
+
+        /* Reviews Cards Container inside See Reviews Modal */
+        .reviews-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+            max-height: 65vh;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .review-card-item {
+            background: var(--bg-input);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .review-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .reviewer-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .review-stars {
+            color: var(--star-gold);
+            font-size: 12px;
+        }
+
+        .review-card-text {
+            font-size: 12px;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        /* Interactive Star Rating Selector in Add Review Form */
+        .star-rating-select {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            font-size: 22px;
+            color: var(--text-dim);
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .star-rating-select i.selected, .star-rating-select i:hover, .star-rating-select i:hover ~ i {
+            color: var(--star-gold);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 24px;
+            color: var(--text-dim);
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(13, 10, 26, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+
+        /* Mobile Responsive & Tarteeb Control via Order */
+        @media (max-width: 900px) {
+            main {
+                margin-top: 140px;
+            }
+
+            .bismillah-text {
+                font-size: 18px;
+            }
+
+            .nav-links {
+                gap: 8px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+                padding: 4px 8px;
+            }
+
+            .hero {
+                flex-direction: column;
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content {
+                order: 1;
+                max-width: 100%;
+            }
+
+            .profile-card-side {
+                order: 2;
+                max-width: 100%;
+                margin-top: 15px;
+            }
+
+            .about-container, .contact-container {
+                flex-direction: column-reverse;
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .support-banner-247 {
+                text-align: left;
+            }
+
+            .explore-buttons-wrapper {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .explore-trigger-btn, .reviews-trigger-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Top Navigation Bar -->
-    <nav>
-        <div class="logo">MyBrand</div>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-                <a href="#reviews">Reviews ▾</a>
-                <div class="dropdown-content">
-                    <a href="#write-review">⭐ Apna Review Dein</a>
-                    <a href="#read-reviews">👥 Logo ke Reviews</a>
+    <!-- Header / Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="bismillah-text">
+                بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a class="nav-link active" onclick="switchTab('home')">Home</a></li>
+                <li><a class="nav-link" onclick="switchTab('about')">About</a></li>
+                <li><a class="nav-link" onclick="switchTab('services')">Services</a></li>
+                <li><a class="nav-link" onclick="switchTab('portfolio')">Portfolio</a></li>
+                <li><a class="nav-link" onclick="switchTab('contact')">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 1. HOME SECTION -->
+        <section id="home" class="page-section active-section">
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="status-badge">
+                        <span class="status-dot"></span> 24/7 Available for Projects & Forex Signals
+                    </div>
+                    <h1>Muhammad Ali Ashfaq</h1>
+                    
+                    <!-- MOBILE PICTURE PLACEMENT -->
+                    <div class="profile-card-side mobile-direct-img" style="display:none;">
+                        <div class="img-container">
+                            <img src="https://i.ibb.co/mVWwLWv2/profile-jpg.jpg" alt="Muhammad Ali Ashfaq">
+                        </div>
+                    </div>
+
+                    <h2 class="role">BSCS Graduate, Shopify Expert, Web Developer, Video Editor & Forex Trader</h2>
+                    <p class="description">
+                        Holding a BS Computer Science (BSCS) degree, I empower businesses with high-converting Shopify stores, modern web design, high-quality video editing, and Meta Ads strategies, while helping traders achieve financial success through precise Forex market analysis and daily trading signals.
+                    </p>
+
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h4>BSCS</h4>
+                            <p>Degree Holder</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>3+ Years</h4>
+                            <p>Experience</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>50+ Stores</h4>
+                            <p>Built & Managed</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>85%+</h4>
+                            <p>Signals Accuracy</p>
+                        </div>
+                    </div>
+
+                    <div class="support-banner-247">
+                        <i class="fa-solid fa-headset"></i>
+                        <div class="support-banner-text">
+                            <h5>24/7 Instant Client Support <span class="badge-247">ACTIVE 24/7</span></h5>
+                            <p>Quick response guaranteed anytime for store maintenance, urgent edits & Forex query support.</p>
+                        </div>
+                    </div>
+
+                    <div class="hero-btns">
+                        <a onclick="switchTab('contact')" class="btn primary-btn"><i class="fa-solid fa-paper-plane"></i> Hire Me / Contact</a>
+                        <a onclick="switchTab('services')" class="btn secondary-btn"><i class="fa-solid fa-layer-group"></i> Explore Services</a>
+                    </div>
                 </div>
-            </li>
-        </ul>
-    </nav>
 
-    <!-- Main Content Area / Reviews Section -->
-    <div class="container" id="read-reviews">
-        <h2>Logo ke Reviews (12 Verified Reviews)</h2>
-        
-        <div class="review-card">
-            <h4>Ali Khan</h4>
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p>“Behtareen service hai! Kaam waqt par aur umeed se behtar mila. Highly recommended!”</p>
+                <!-- Profile Card Side (Desktop) -->
+                <div class="profile-card-side desktop-img-side">
+                    <div class="img-container">
+                        <img src="https://i.ibb.co/mVWwLWv2/profile-jpg.jpg" alt="profile-jpg">
+                    </div>
+
+                    <div class="contact-widget">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=muhammadali99704@gmail.com" target="_blank" class="contact-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div class="contact-text">
+                                <label>Direct Inbox Email</label>
+                                <span>muhammadali99704@gmail.com</span>
+                            </div>
+                        </a>
+
+                        <div class="contact-item" onclick="openPhoneModal('0319 4827997', '+923194827997')">
+                            <i class="fa-solid fa-phone"></i>
+                            <div class="contact-text">
+                                <label>Call / WhatsApp Primary (24/7)</label>
+                                <span>0319 4827997</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-item" onclick="openPhoneModal('0308 7569856', '+923087569856')">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                            <div class="contact-text">
+                                <label>Call / WhatsApp Secondary</label>
+                                <span>0308 7569856</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HOME PAGE SERVICES PREVIEW -->
+            <div class="home-extra-section">
+                <div class="home-section-heading">
+                    <h3><i class="fa-solid fa-briefcase"></i> Key Specializations</h3>
+                    <a onclick="switchTab('services')">View All Services <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-brands fa-shopify"></i></div>
+                        <h3>Shopify Development</h3>
+                        <p>High-converting e-commerce stores engineered for sales, speed, and seamless customer checkout experience.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-video"></i></div>
+                        <h3>Video Editing</h3>
+                        <p>Engaging social media Reels, TikToks, Shorts, and high-converting video ad creatives for brands.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <h3>Forex Signals & Analysis</h3>
+                        <p>Daily accurate technical analysis, market trend forecasts, and precise entry/exit trading signals.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUTTONS CONTAINER AT THE END OF HOME PAGE (Explore & Reviews Buttons) -->
+            <div class="home-explore-bottom-container">
+                <h3>Want to discover more sections or check client feedback?</h3>
+                <p>Click below to seamlessly navigate or view genuine reviews from traders & store owners.</p>
+                <div class="explore-buttons-wrapper">
+                    <button class="explore-trigger-btn" onclick="openExploreModal()">
+                        <i class="fa-solid fa-compass"></i> Explore More <i class="fa-solid fa-chevron-right" style="font-size: 11px;"></i>
+                    </button>
+                    <button class="reviews-trigger-btn" onclick="openReviewsMenuModal()">
+                        <i class="fa-solid fa-star"></i> Reviews <i class="fa-solid fa-chevron-right" style="font-size: 11px;"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT SECTION -->
+        <section id="about" class="page-section">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p>Learn more about my background, passion, and technical expertise.</p>
+            </div>
+            <div class="about-container">
+                <div class="about-box">
+                    <h3>Professional Overview</h3>
+                    <p>I am a BSCS (Bachelor of Science in Computer Science) degree holder and a versatile digital professional with extensive expertise in full-stack web development, e-commerce creation, video editing, performance marketing, and financial markets. My mission is to empower businesses with high-converting digital assets and smart strategies.</p>
+                    <p>From building high-converting Shopify stores, creating engaging video content, and running Meta Ads to providing accurate Forex trading signals, I combine solid computer science fundamentals with practical digital expertise to deliver measurable success.</p>
+                    <a onclick="switchTab('contact')" class="btn primary-btn"><i class="fa-solid fa-paper-plane"></i> Get In Touch</a>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <div>
+                            <h4>BSCS Degree</h4>
+                            <span style="font-size:11px; color:var(--text-dim);">Computer Science</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fa-brands fa-shopify"></i>
+                        <div>
+                            <h4>Shopify Development</h4>
+                            <span style="font-size:11px; color:var(--text-dim);">Store Setup & Customization</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fa-solid fa-film"></i>
+                        <div>
+                            <h4>Video Editing</h4>
+                            <span style="font-size:11px; color:var(--text-dim);">Reels, Shorts & Ad Creatives</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fa-solid fa-code"></i>
+                        <div>
+                            <h4>Web Creation & Editing</h4>
+                            <span style="font-size:11px; color:var(--text-dim);">HTML/CSS/JS & CMS</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <div>
+                            <h4>Forex Trading & Signals</h4>
+                            <span style="font-size:11px; color:var(--text-dim);">Market Analysis & Signals</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fa-solid fa-clock"></i>
+                        <div>
+                            <h4>24/7 Availability</h4>
+                            <span style="font-size:11px; color:var(--text-dim);">Round-the-clock Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SERVICES SECTION -->
+        <section id="services" class="page-section">
+            <div class="section-title">
+                <h2>My Services</h2>
+                <p>High-quality digital solutions tailored to elevate your business.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-brands fa-shopify"></i></div>
+                    <h3>Shopify Store Creation</h3>
+                    <p>Building fully responsive, high-converting, and automated Shopify e-commerce stores from scratch.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-photo-film"></i></div>
+                    <h3>Video Editing & Motion</h3>
+                    <p>Professional video editing for TikTok, Instagram Reels, YouTube Shorts, and high-impact e-commerce video ads.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-store"></i></div>
+                    <h3>Store Management & 24/7 Support</h3>
+                    <p>End-to-end e-commerce store maintenance, inventory updating, design optimization, and 24/7 active technical assistance.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                    <h3>Website Creation & Editing</h3>
+                    <p>Custom website development and front-end code edits for flawless speed, design, and user experience.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3>Forex Trading & Signals</h3>
+                    <p>Providing accurate Forex market signals, technical analysis, and risk management strategies.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-rectangle-ad"></i></div>
+                    <h3>Meta Ads Campaign</h3>
+                    <p>Targeted Facebook and Instagram ad setup, audience research, creative strategy, and ROI tracking.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PORTFOLIO SECTION -->
+        <section id="portfolio" class="page-section">
+            <div class="section-title">
+                <h2>Featured Projects</h2>
+                <p>A showcase of recent stores, websites, and creative work.</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-img"><i class="fa-brands fa-shopify"></i></div>
+                    <div class="portfolio-info">
+                        <h3>E-Commerce Fashion Store</h3>
+                        <p>Complete Shopify store design with integrated payment gateway and automated order setup.</p>
+                        <span class="tag">Shopify</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-img"><i class="fa-solid fa-play"></i></div>
+                    <div class="portfolio-info">
+                        <h3>High-Converting Video Ads</h3>
+                        <p>Engaging promotional video edits tailored for Meta Ads and social media marketing campaigns.</p>
+                        <span class="tag">Video Editing</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-img"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="portfolio-info">
+                        <h3>Forex Signals Community</h3>
+                        <p>Trading portal providing daily technical analysis breakdown and market signal alerts.</p>
+                        <span class="tag">Forex Signals</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CONTACT SECTION -->
+        <section id="contact" class="page-section">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+                <p>Feel free to reach out for projects, signals, or collaborations (24/7 Available).</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info-cards">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=muhammadali99704@gmail.com" target="_blank" class="contact-card-box">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <h4 style="font-size: 14px;">Open Direct Gmail Inbox</h4>
+                            <p style="font-size: 13px; color: var(--text-dim);">muhammadali99704@gmail.com</p>
+                        </div>
+                    </a>
+
+                    <div class="contact-card-box" onclick="openPhoneModal('0319 4827997', '+923194827997')" style="cursor: pointer;">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <h4 style="font-size: 14px;">Primary Phone / WhatsApp (24/7)</h4>
+                            <p style="font-size: 13px; color: var(--text-dim);">0319 4827997 (Click for options)</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card-box" onclick="openPhoneModal('0308 7569856', '+923087569856')" style="cursor: pointer;">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        <div>
+                            <h4 style="font-size: 14px;">Secondary Phone / WhatsApp</h4>
+                            <p style="font-size: 13px; color: var(--text-dim);">0308 7569856 (Click for options)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Email</label>
+                        <input type="email" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea placeholder="Write your message or inquiry here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary-btn" style="width: 100%; justify-content: center;"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- AI Assistant Floating Widget with Greeting Bubble -->
+    <div class="ai-chat-wrapper">
+        <div class="ai-greeting-bubble">
+            ✨ Hi there! I am your AI assistant. How may I assist you?
         </div>
-
-        <div class="review-card">
-            <h4>Fatima Noor</h4>
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p>“Support team ka response time bohot fast hai aur behavior bhi bohat polite hai.”</p>
-        </div>
-
-        <div class="review-card">
-            <h4>Muhammad Ahmed</h4>
-            <div class="stars">⭐⭐⭐⭐</div>
-            <p>“Overall experience bohot acha raha, bas pricing thori si mazeed competitive ho sakti hai.”</p>
-        </div>
-
-        <div class="review-card">
-            <h4>Ayesha Malik</h4>
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p>“Main pehle thori confused thi lekin inho ne meri saari queries easily solve kar dien.”</p>
-        </div>
-
-        <div class="review-card">
-            <h4>Usman Tariq</h4>
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p>“Quality of work lajawab hai. Main apne dosto ko bhi yehi recommend karunga.”</p>
-        </div>
-
-        <div class="review-card">
-            <h4>Zainab Batool</h4>
-            <div class="stars">⭐⭐⭐⭐</div>
-            <p>“Design aur layout bohot clean aur professional hai. Kaam pasand aaya.”</p>
-        </div>
-
-        <div class="review-card">
-            <h4>Bilal Ahmed</h4>
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p>“Fast delivery aur excellent communication. Jo kaha tha wahi deliver kiya.”</p>
-        </div>
-
-        <div class="review-card">
-            <h4>Sobia Khan</h4>
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p>“Mujhe ye platform bohot pasand aaya, isse mera kaam buhat asaan ho gaya hai.”</p>
-        </div>
-
-        <div class="review-card">
-            <h4>Hamza Ali</h4>
-            <div class="stars">⭐⭐⭐⭐</div>
-            <p>“Good experience! Thori si delay hui thi starting mein lekin baad mein sab handle ho gaya.”</p>
-        </div>
-
-        <div class="review-card">
-            <h4>Nimra Shah</h4>
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p>“Outstanding! Aise professional log aajkal kam hi milte hain.”</p>
-        </div>
-
-        <div class="review-card">
-            <h4>Danish Raza</h4>
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p>“10/10 service. Main definitely dobara inhein hire karunga apne next project ke liye.”</p>
-        </div>
-
-        <div class="review-card" id="write-review">
-            <h4>Hira Qureshi</h4>
-            <div class="stars">⭐⭐⭐⭐</div>
-            <p>“Bohat achi experience rahi, interface user-friendly hai aur features bhi kaafi ache hain.”</p>
+        <div class="ai-chat-btn" onclick="toggleAIChat()" title="Chat with AI Assistant">
+            <i class="fa-solid fa-robot"></i>
         </div>
     </div>
 
-    <!-- Bottom Review Button -->
-    <div class="bottom-btn-container">
-        <a href="#write-review" class="btn">Apna Review Yahan Dein</a>
+    <div class="ai-chat-container" id="aiChatContainer">
+        <div class="ai-chat-header">
+            <div class="ai-chat-title">
+                <div class="ai-avatar">AI</div>
+                <div>
+                    <h4>Ali's Assistant</h4>
+                    <span>● Online 24/7</span>
+                </div>
+            </div>
+            <button class="ai-close-btn" onclick="toggleAIChat()">&times;</button>
+        </div>
+
+        <div class="ai-chat-body" id="aiChatBody">
+            <div class="chat-message bot">
+                Hello! 👋 Main Muhammad Ali Ashfaq ka AI Assistant hoon. Aapko hamari kin services ke mutabiq information chahiye?
+                <div class="ai-quick-options">
+                    <span class="quick-chip" onclick="sendQuickQuery('Shopify Store')">🛍️ Shopify Store</span>
+                    <span class="quick-chip" onclick="sendQuickQuery('Video Editing')">🎬 Video Editing</span>
+                    <span class="quick-chip" onclick="sendQuickQuery('Forex Signals')">📈 Forex Signals</span>
+                    <span class="quick-chip" onclick="sendQuickQuery('Contact Number')">📞 Contact & Support</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="ai-chat-footer">
+            <input type="text" id="aiUserInput" placeholder="Yahan apna sawal likhein..." onkeypress="handleAIKeypress(event)">
+            <button onclick="sendUserMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
     </div>
 
-</body>
-</html>
+    <!-- Phone Option Popup Modal -->
+    <div class="modal-overlay" id="phoneModal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closePhoneModal()">&times;</span>
+            <h3 id="modalNumberTitle">Choose Option</h3>
+            <p>What would you like to do with this number?</p>
+
+            <div class="modal-actions">
+                <a href="#" id="callOption" class="action-link call-btn">
+                    <i class="fa-solid fa-phone"></i> Call Directly
+                </a>
+                <a href="#" id="waCallOption" class="action-link wa-call-btn">
+                    <i class="fa-solid fa-phone-volume"></i> Call on WhatsApp
+                </a>
+                <a href="#" id="msgOption" class="action-link msg-btn">
+                    <i class="fa-solid fa-comment-dots"></i> Send SMS Message
+                </a>
+                <a href="#" id="waMsgOption" target="_blank" class="action-link wa-msg-btn">
+                    <i class="fa-brands fa-whatsapp"></i> Message on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPLORE MORE OPTIONS POPUP MODAL -->
+    <div class="modal-overlay" id="exploreModal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeExploreModal()">&times;</span>
+            <h3 style="color: var(--accent-blue); margin-bottom: 8px;">Explore Sections</h3>
+            <p>Select any option below to view details instantly:</p>
+
+            <div class="modal-actions">
+                <div class="action-link explore-option-link" onclick="navigateToSection('home')">
+                    <i class="fa-solid fa-house"></i> Home Section
+                </div>
+                <div class="action-link explore-option-link" onclick="navigateToSection('about')">
+                    <i class="fa-solid fa-user"></i> About Me
+                </div>
+                <div class="action-link explore-option-link" onclick="navigateToSection('services')">
+                    <i class="fa-solid fa-layer-group"></i> My Services
+                </div>
+                <div class="action-link explore-option-link" onclick="navigateToSection('portfolio')">
+                    <i class="fa-solid fa-briefcase"></i> Portfolio Projects
+                </div>
+                <div class="action-link explore-option-link" onclick="navigateToSection('contact')">
+                    <i class="fa-solid fa-paper-plane"></i> Contact & Support
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REVIEWS OPTIONS MENU MODAL (See Reviews & Add Review) -->
+    <div class="modal-overlay" id="reviewsMenuModal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeReviewsMenuModal()">&times;</span>
+            <h3 style="color: var(--star-gold); margin-bottom: 8px;"><i class="fa-solid fa-star"></i> Client Reviews & Feedback</h3>
+            <p>Choose what you would like to do:</p>
+
+            <div class="modal-actions">
+                <div class="action-link explore-option-link" onclick="openSeeReviewsModal()">
+                    <i class="fa-solid fa-comments" style="color: var(--star-gold);"></i> See Reviews (Client Feedback)
+                </div>
+                <div class="action-link explore-option-link" onclick="openAddReviewModal()">
+                    <i class="fa-solid fa-pen-to-square" style="color: var(--accent-blue);"></i> Add Review (Share Your Experience)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEE REVIEWS MODAL (Displaying Pakistani Names, Gold XAUUSD Forex, Ads & Shopify Reviews) -->
+    <div class="modal-overlay" id="seeReviewsModal">
+        <div class="modal-box" style="max-width: 480px;">
+            <span class="close-modal" onclick="closeSeeReviewsModal()">&times;</span>
+            <h3 style="color: var(--star-gold); margin-bottom: 5px;">What Clients Say</h3>
+            <p style="margin-bottom: 15px;">Authentic feedback about Forex Gold signals, Shopify stores & Meta Ads.</p>
+
+            <div class="reviews-list-container" id="reviewsListContainer">
+                <!-- Dynamic & Static Reviews -->
+                <div class="review-card-item">
+                    <div class="review-card-header">
+                        <span class="reviewer-name">Muhammad Usman</span>
+                        <div class="review-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-card-text">Ali bhai ke XAUUSD (Gold) signals kamaal ke hain! Pichle hafte Gold ki buy entry ne zabardast profit diya. Highly recommended for scalpers.</p>
+                </div>
+
+                <div class="review-card-item">
+                    <div class="review-card-header">
+                        <span class="reviewer-name">Ayesha Khan</span>
+                        <div class="review-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                    </div>
+                    <p class="review-card-text">Maine apni e-commerce brand ke liye Shopify store banwaya tha. Design bht pyara hai aur speed bhi fast hai. Sales bhi start ho gayi hain!</p>
+                </div>
+
+                <div class="review-card-item">
+                    <div class="review-card-header">
+                        <span class="reviewer-name">Ahmed Raza</span>
+                        <div class="review-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-card-text">Gold (XAUUSD) aur Forex trading mein agar accurate levels chahiye toh Ali bhai ka channel best hai. Risk management guidance bhi boht zabardast hai.</p>
+                </div>
+
+                <div class="review-card-item">
+                    <div class="review-card-header">
+                        <span class="reviewer-name">Fatima Noor</span>
+                        <div class="review-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="text-dim fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-card-text">Meta Ads campaigns aur video editing ke liye Ali se hire kiya tha. ROAS mein acha khasa izafa dekhne ko mila. Very professional service!</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button class="btn primary-btn" onclick="openAddReviewModal()" style="font-size: 13px; padding: 8px 20px;">Add Your Review</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD REVIEW FORM MODAL -->
+    <div class="modal-overlay" id="addReviewModal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeAddReviewModal()">&times;</span>
+            <h3 style="color: var(--accent-blue); margin-bottom: 5px;">Share Your Review</h3>
+            <p style="margin-bottom: 15px;">Your feedback helps others grow!</p>
+
+            <form class="contact-form" onsubmit="submitUserReview(event)" style="padding: 0; background: none; border: none; box-shadow: none;">
+                <div class="form-group" style="text-align: left; margin-bottom: 12px;">
+                    <label>Your Name</label>
+                    <input type="text" id="reviewAuthorName" placeholder="e.g. Hamza Ali / Sana Tariq" required>
+                </div>
+
+                <div class="form-group" style="text-align: left; margin-bottom: 12px;">
+                    <label>Rate Your Experience</label>
+                    <div class="star-rating-select" id="starRatingSelect">
+                        <i class="fa-solid fa-star selected" data-value="1" onclick="setRating(1)"></i>
+                        <i class="fa-solid fa-star selected" data-value="2" onclick="setRating(2)"></i>
+                        <i class="fa-solid fa-star selected" data-value="3" onclick="setRating(3)"></i>
+                        <i class="fa-solid fa-star selected" data-value="4" onclick="setRating(4)"></i>
+                        <i class="fa-solid fa-star selected" data-value="5" onclick="setRating(5)"></i>
+                    </div>
+                    <input type="hidden" id="selectedRatingValue" value="5">
+                </div>
+
+                <div class="form-group" style="text-align: left; margin-bottom: 20px;">
+                    <label>Your Review (Shopify, Gold Signals, Ads etc.)</label>
+                    <textarea id="reviewTextContent" placeholder="Write about your experience with Forex signals, Shopify or video editing..." style="height: 90px;" required></textarea>
+                </div>
+
+                <button type="submit" class="btn primary-btn" style="width: 100%; justify-content: center;"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Muhammad Ali Ashfaq. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript Navigation & Modals Logic -->
+    <script>
+        function switchTab(sectionId) {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('active-section'));
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active-section');
+            }
+
+            const navLinksList = document.querySelectorAll('.nav-link');
+            navLinksList.forEach(link => link.classList.remove('active'));
+            
+            const activeNav = Array.from(navLinksList).find(link => link.getAttribute('onclick').includes(sectionId));
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Screen size ke mutabiq mobile ya desktop ki image ko handle karna
+        function handleScreenLayout() {
+            const mobileImg = document.querySelector('.mobile-direct-img');
+            const desktopImg = document.querySelector('.desktop-img-side');
+
+            if (window.innerWidth <= 900) {
+                if(mobileImg) mobileImg.style.display = 'flex';
+                if(desktopImg) desktopImg.style.display = 'none';
+            } else {
+                if(mobileImg) mobileImg.style.display = 'none';
+                if(desktopImg) desktopImg.style.display = 'flex';
+            }
+        }
+
+        window.addEventListener('resize', handleScreenLayout);
+        window.addEventListener('load', handleScreenLayout);
+
+        // Explore More Modal Handlers
+        function openExploreModal() {
+            document.getElementById('exploreModal').classList.add('active');
+        }
+
+        function closeExploreModal() {
+            document.getElementById('exploreModal').classList.remove('active');
+        }
+
+        function navigateToSection(sectionId) {
+            closeExploreModal();
+            switchTab(sectionId);
+        }
+
+        // Reviews Menu Modal Handlers
+        function openReviewsMenuModal() {
+            document.getElementById('reviewsMenuModal').classLi
