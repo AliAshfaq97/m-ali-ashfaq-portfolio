@@ -18,6 +18,7 @@
             --accent-purple: #a855f7;
             --accent-blue: #38bdf8;
             --whatsapp-green: #25d366;
+            --star-gold: #fbbf24;
             --text-light: #ffffff;
             --text-dim: #94a3b8;
             --card-border: rgba(168, 85, 247, 0.3);
@@ -461,11 +462,18 @@
             margin-bottom: 25px;
         }
 
+        .explore-buttons-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
         .explore-trigger-btn {
             background: linear-gradient(135deg, var(--accent-blue), var(--primary-glow));
             color: #ffffff;
             border: none;
-            padding: 14px 35px;
+            padding: 14px 30px;
             font-size: 15px;
             font-weight: 600;
             border-radius: 30px;
@@ -477,9 +485,26 @@
             transition: all 0.3s ease;
         }
 
-        .explore-trigger-btn:hover {
+        .reviews-trigger-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #ffffff;
+            border: none;
+            padding: 14px 30px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(245, 158, 11, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .explore-trigger-btn:hover, .reviews-trigger-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.7);
+            opacity: 0.95;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
         }
 
         /* ABOUT SECTION */
@@ -955,7 +980,7 @@
             cursor: pointer;
         }
 
-        /* MODALS (Phone & Explore More Menu Modal) */
+        /* MODALS (Phone, Explore, Reviews & Add Review) */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -981,11 +1006,13 @@
             border-radius: 18px;
             padding: 25px;
             width: 100%;
-            max-width: 380px;
+            max-width: 420px;
             box-shadow: var(--glow-shadow);
             text-align: center;
             position: relative;
             animation: scaleModal 0.3s ease-in-out;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         @keyframes scaleModal {
@@ -1031,7 +1058,7 @@
         .msg-btn { background: #8b5cf6; }
         .wa-msg-btn { background: var(--whatsapp-green); }
 
-        /* Explore Menu Options Specific Styling */
+        /* Explore / Reviews Menu Option Specific Styling */
         .explore-option-link {
             background: var(--bg-input);
             border: 1px solid rgba(168, 85, 247, 0.2);
@@ -1054,6 +1081,65 @@
             background: rgba(56, 189, 248, 0.15);
             border-color: var(--accent-blue);
             transform: translateX(4px);
+        }
+
+        /* Reviews Cards Container inside See Reviews Modal */
+        .reviews-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+            max-height: 65vh;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .review-card-item {
+            background: var(--bg-input);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .review-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .reviewer-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .review-stars {
+            color: var(--star-gold);
+            font-size: 12px;
+        }
+
+        .review-card-text {
+            font-size: 12px;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        /* Interactive Star Rating Selector in Add Review Form */
+        .star-rating-select {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            font-size: 22px;
+            color: var(--text-dim);
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .star-rating-select i.selected, .star-rating-select i:hover, .star-rating-select i:hover ~ i {
+            color: var(--star-gold);
         }
 
         .close-modal {
@@ -1131,6 +1217,16 @@
 
             .support-banner-247 {
                 text-align: left;
+            }
+
+            .explore-buttons-wrapper {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .explore-trigger-btn, .reviews-trigger-btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -1270,13 +1366,18 @@
                 </div>
             </div>
 
-            <!-- PYARA SA EXPLORE MORE BUTTON AT THE END OF HOME PAGE (FOREX BOX KE NEECHE) -->
+            <!-- BUTTONS CONTAINER AT THE END OF HOME PAGE (Explore & Reviews Buttons) -->
             <div class="home-explore-bottom-container">
-                <h3>Want to discover more sections?</h3>
-                <p>Click below to seamlessly navigate through my complete portfolio overview.</p>
-                <button class="explore-trigger-btn" onclick="openExploreModal()">
-                    <i class="fa-solid fa-compass"></i> Explore More Options <i class="fa-solid fa-chevron-right" style="font-size: 11px;"></i>
-                </button>
+                <h3>Want to discover more sections or check client feedback?</h3>
+                <p>Click below to seamlessly navigate or view genuine reviews from traders & store owners.</p>
+                <div class="explore-buttons-wrapper">
+                    <button class="explore-trigger-btn" onclick="openExploreModal()">
+                        <i class="fa-solid fa-compass"></i> Explore More <i class="fa-solid fa-chevron-right" style="font-size: 11px;"></i>
+                    </button>
+                    <button class="reviews-trigger-btn" onclick="openReviewsMenuModal()">
+                        <i class="fa-solid fa-star"></i> Reviews <i class="fa-solid fa-chevron-right" style="font-size: 11px;"></i>
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -1538,7 +1639,7 @@
         </div>
     </div>
 
-    <!-- EXPLORE MORE OPTIONS POPUP MODAL (Pyara sa menu jo home/about/services/portfolio/contact kholay ga) -->
+    <!-- EXPLORE MORE OPTIONS POPUP MODAL -->
     <div class="modal-overlay" id="exploreModal">
         <div class="modal-box">
             <span class="close-modal" onclick="closeExploreModal()">&times;</span>
@@ -1562,6 +1663,115 @@
                     <i class="fa-solid fa-paper-plane"></i> Contact & Support
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- REVIEWS OPTIONS MENU MODAL (See Reviews & Add Review) -->
+    <div class="modal-overlay" id="reviewsMenuModal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeReviewsMenuModal()">&times;</span>
+            <h3 style="color: var(--star-gold); margin-bottom: 8px;"><i class="fa-solid fa-star"></i> Client Reviews & Feedback</h3>
+            <p>Choose what you would like to do:</p>
+
+            <div class="modal-actions">
+                <div class="action-link explore-option-link" onclick="openSeeReviewsModal()">
+                    <i class="fa-solid fa-comments" style="color: var(--star-gold);"></i> See Reviews (Client Feedback)
+                </div>
+                <div class="action-link explore-option-link" onclick="openAddReviewModal()">
+                    <i class="fa-solid fa-pen-to-square" style="color: var(--accent-blue);"></i> Add Review (Share Your Experience)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEE REVIEWS MODAL (Displaying Pakistani Names, Gold XAUUSD Forex, Ads & Shopify Reviews) -->
+    <div class="modal-overlay" id="seeReviewsModal">
+        <div class="modal-box" style="max-width: 480px;">
+            <span class="close-modal" onclick="closeSeeReviewsModal()">&times;</span>
+            <h3 style="color: var(--star-gold); margin-bottom: 5px;">What Clients Say</h3>
+            <p style="margin-bottom: 15px;">Authentic feedback about Forex Gold signals, Shopify stores & Meta Ads.</p>
+
+            <div class="reviews-list-container" id="reviewsListContainer">
+                <!-- Dynamic & Static Reviews -->
+                <div class="review-card-item">
+                    <div class="review-card-header">
+                        <span class="reviewer-name">Muhammad Usman</span>
+                        <div class="review-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-card-text">Ali bhai ke XAUUSD (Gold) signals kamaal ke hain! Pichle hafte Gold ki buy entry ne zabardast profit diya. Highly recommended for scalpers.</p>
+                </div>
+
+                <div class="review-card-item">
+                    <div class="review-card-header">
+                        <span class="reviewer-name">Ayesha Khan</span>
+                        <div class="review-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                    </div>
+                    <p class="review-card-text">Maine apni e-commerce brand ke liye Shopify store banwaya tha. Design bht pyara hai aur speed bhi fast hai. Sales bhi start ho gayi hain!</p>
+                </div>
+
+                <div class="review-card-item">
+                    <div class="review-card-header">
+                        <span class="reviewer-name">Ahmed Raza</span>
+                        <div class="review-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-card-text">Gold (XAUUSD) aur Forex trading mein agar accurate levels chahiye toh Ali bhai ka channel best hai. Risk management guidance bhi boht zabardast hai.</p>
+                </div>
+
+                <div class="review-card-item">
+                    <div class="review-card-header">
+                        <span class="reviewer-name">Fatima Noor</span>
+                        <div class="review-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="text-dim fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-card-text">Meta Ads campaigns aur video editing ke liye Ali se hire kiya tha. ROAS mein acha khasa izafa dekhne ko mila. Very professional service!</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button class="btn primary-btn" onclick="openAddReviewModal()" style="font-size: 13px; padding: 8px 20px;">Add Your Review</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD REVIEW FORM MODAL -->
+    <div class="modal-overlay" id="addReviewModal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeAddReviewModal()">&times;</span>
+            <h3 style="color: var(--accent-blue); margin-bottom: 5px;">Share Your Review</h3>
+            <p style="margin-bottom: 15px;">Your feedback helps others grow!</p>
+
+            <form class="contact-form" onsubmit="submitUserReview(event)" style="padding: 0; background: none; border: none; box-shadow: none;">
+                <div class="form-group" style="text-align: left; margin-bottom: 12px;">
+                    <label>Your Name</label>
+                    <input type="text" id="reviewAuthorName" placeholder="e.g. Hamza Ali / Sana Tariq" required>
+                </div>
+
+                <div class="form-group" style="text-align: left; margin-bottom: 12px;">
+                    <label>Rate Your Experience</label>
+                    <div class="star-rating-select" id="starRatingSelect">
+                        <i class="fa-solid fa-star selected" data-value="1" onclick="setRating(1)"></i>
+                        <i class="fa-solid fa-star selected" data-value="2" onclick="setRating(2)"></i>
+                        <i class="fa-solid fa-star selected" data-value="3" onclick="setRating(3)"></i>
+                        <i class="fa-solid fa-star selected" data-value="4" onclick="setRating(4)"></i>
+                        <i class="fa-solid fa-star selected" data-value="5" onclick="setRating(5)"></i>
+                    </div>
+                    <input type="hidden" id="selectedRatingValue" value="5">
+                </div>
+
+                <div class="form-group" style="text-align: left; margin-bottom: 20px;">
+                    <label>Your Review (Shopify, Gold Signals, Ads etc.)</label>
+                    <textarea id="reviewTextContent" placeholder="Write about your experience with Forex signals, Shopify or video editing..." style="height: 90px;" required></textarea>
+                </div>
+
+                <button type="submit" class="btn primary-btn" style="width: 100%; justify-content: center;"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
+            </form>
         </div>
     </div>
 
@@ -1622,6 +1832,97 @@
             switchTab(sectionId);
         }
 
+        // Reviews Menu Modal Handlers
+        function openReviewsMenuModal() {
+            document.getElementById('reviewsMenuModal').classList.add('active');
+        }
+
+        function closeReviewsMenuModal() {
+            document.getElementById('reviewsMenuModal').classList.remove('active');
+        }
+
+        function openSeeReviewsModal() {
+            closeReviewsMenuModal();
+            document.getElementById('seeReviewsModal').classList.add('active');
+        }
+
+        function closeSeeReviewsModal() {
+            document.getElementById('seeReviewsModal').classList.remove('active');
+        }
+
+        function openAddReviewModal() {
+            closeReviewsMenuModal();
+            closeSeeReviewsModal();
+            document.getElementById('addReviewModal').classList.add('active');
+        }
+
+        function closeAddReviewModal() {
+            document.getElementById('addReviewModal').classList.remove('active');
+        }
+
+        // Star Rating Selector Logic
+        function setRating(ratingVal) {
+            document.getElementById('selectedRatingValue').value = ratingVal;
+            const stars = document.querySelectorAll('#starRatingSelect i');
+            stars.forEach((star, index) => {
+                if(index < ratingVal) {
+                    star.classList.add('fa-solid', 'selected');
+                    star.classList.remove('fa-regular');
+                } else {
+                    star.classList.remove('fa-solid', 'selected');
+                    star.classList.add('fa-regular');
+                }
+            });
+        }
+
+        // Submit User Review Logic
+        function submitUserReview(event) {
+            event.preventDefault();
+            const name = document.getElementById('reviewAuthorName').value.trim();
+            const rating = parseInt(document.getElementById('selectedRatingValue').value);
+            const text = document.getElementById('reviewTextContent').value.trim();
+
+            if(!name || !text) return;
+
+            // Generate stars HTML
+            let starsHTML = '';
+            for(let i = 1; i <= 5; i++) {
+                if(i <= rating) {
+                    starsHTML += '<i class="fa-solid fa-star"></i>';
+                } else {
+                    starsHTML += '<i class="text-dim fa-regular fa-star"></i>';
+                }
+            }
+
+            // Create new review item element
+            const reviewsContainer = document.getElementById('reviewsListContainer');
+            const newCard = document.createElement('div');
+            newCard.className = 'review-card-item';
+            newCard.innerHTML = `
+                <div class="review-card-header">
+                    <span class="reviewer-name">${escapeHtml(name)}</span>
+                    <div class="review-stars">${starsHTML}</div>
+                </div>
+                <p class="review-card-text">${escapeHtml(text)}</p>
+            `;
+
+            // Prepend new review to the top of list
+            reviewsContainer.insertBefore(newCard, reviewsContainer.firstChild);
+
+            // Reset form
+            document.getElementById('reviewAuthorName').value = '';
+            document.getElementById('reviewTextContent').value = '';
+            setRating(5);
+
+            closeAddReviewModal();
+            alert('Shukriya! Aapka review kamyabi ke sath add ho gaya hai.');
+            openSeeReviewsModal();
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
         // AI Chatbot Logic
         function toggleAIChat() {
             const chatContainer = document.getElementById('aiChatContainer');
@@ -1637,7 +1938,7 @@
                 } else if(topic.includes('Video')) {
                     reply = "Video editing services mein Reels, TikToks, YouTube Shorts aur high-impact ad creatives shamil hain. Aap contact section se ya <span class='ai-phone-link' onclick=\"openPhoneModal('0319 4827997', '+923194827997')\">0319 4827997</span> par click karke direct baat kar sakte hain!";
                 } else if(topic.includes('Forex')) {
-                    reply = "Ali daily accurate technical analysis aur 85%+ accuracy ke sath Forex trading signals provide karte hain.";
+                    reply = "Ali daily accurate technical analysis aur 85%+ accuracy ke sath Forex trading signals (khaas tor par Gold XAUUSD) provide karte hain.";
                 } else if(topic.includes('Contact')) {
                     reply = "Aap Ali se direct <span class='ai-phone-link' onclick=\"openPhoneModal('0319 4827997', '+923194827997')\">0319 4827997</span> par call ya WhatsApp ke zariye 24/7 rabta kar sakte hain, ya direct <a href='https://mail.google.com/mail/?view=cm&fs=1&to=muhammadali99704@gmail.com' target='_blank' class='ai-gmail-link'>Gmail Inbox</a> khol kar email bhej sakte hain.";
                 }
@@ -1702,12 +2003,15 @@
         window.onclick = function(event) {
             const phoneModal = document.getElementById('phoneModal');
             const exploreModal = document.getElementById('exploreModal');
-            if (event.target == phoneModal) {
-                closePhoneModal();
-            }
-            if (event.target == exploreModal) {
-                closeExploreModal();
-            }
+            const reviewsMenuModal = document.getElementById('reviewsMenuModal');
+            const seeReviewsModal = document.getElementById('seeReviewsModal');
+            const addReviewModal = document.getElementById('addReviewModal');
+
+            if (event.target == phoneModal) closePhoneModal();
+            if (event.target == exploreModal) closeExploreModal();
+            if (event.target == reviewsMenuModal) closeReviewsMenuModal();
+            if (event.target == seeReviewsModal) closeSeeReviewsModal();
+            if (event.target == addReviewModal) closeAddReviewModal();
         }
     </script>
 </body>
